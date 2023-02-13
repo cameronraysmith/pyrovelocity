@@ -82,7 +82,6 @@ jobs:
       #   dvc exp run \
       #   -S config.yaml:model_training.pancreas_model1.training_parameters.max_epochs=421 \
       #   train_pancreas_model1
-      # TODO: replace npx ... with cml https://github.com/iterative/cml/issues/1344
       - name: Run experiment and submit report
         run: |
           set -x
@@ -96,8 +95,7 @@ jobs:
           -S config.yaml:model_training.pancreas_model1.training_parameters.max_epochs=425 \
           train_pancreas_model1
           dvc push
-          # cml pr create --skip-ci .
-          npx github:iterative/cml#b923f3e pr create --skip-ci .
+          cml pr create --skip-ci .
           #########################
 
 
