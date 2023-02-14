@@ -75,27 +75,27 @@ stages:
             log_every: 100
             patient_improve: 0.0001
             patient_init: 45
-            max_epochs: 4000
+            max_epochs: 425
             lr: 0.01
             train_size: 1.0
             loss_plot_path: models/pancreas_model1/loss_plot.png
     outs:
     - path: models/pancreas_model1/metrics.json
-      md5: e3871fabe05b83cbd7edc86995726ec5
-      size: 159
+      md5: 16e9645de3314b065fc740c62f337480
+      size: 154
     - path: models/pancreas_model1/model
-      md5: b8cad727506cc41d1e7fc83cc881808f.dir
-      size: 1159443
+      md5: bebbbf6d7d2ff8d19851ef884bfb4a96.dir
+      size: 1159231
       nfiles: 4
     - path: models/pancreas_model1/pyrovelocity.pkl
-      md5: be84ba0bda845db65756dca4ee5ee301
+      md5: e8e7b9341fdc1b2cdef50d5d56f9df36
       size: 7102321859
     - path: models/pancreas_model1/run_info.json
-      md5: 1ace1fec6cf4875490fdd8245eb8a7bc
-      size: 455
+      md5: dd11cd20801390af6f0afcfdebc2deba
+      size: 436
     - path: models/pancreas_model1/trained.h5ad
-      md5: 838ab1051c5d50a08c23a01766f3b4db
-      size: 489752680
+      md5: e4cc1784facbcab33708216737c79ac5
+      size: 489752168
   data_download_pbmc68k:
     cmd: python data_download.py data_external.sources=[scvelo] data_external.scvelo.download=[pbmc68k]
     deps:
