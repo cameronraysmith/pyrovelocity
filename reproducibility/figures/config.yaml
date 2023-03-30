@@ -26,7 +26,6 @@ data_external:
       url: https://storage.googleapis.com/pyrovelocity/data/oligo_lite.h5ad
       derived:
         process_method: load_data
-        process_args: {}
         rel_path: data/processed/pons_processed.h5ad
   scvelo:
     download:
@@ -46,8 +45,6 @@ data_external:
       url: https://github.com/theislab/scvelo_notebooks/raw/master/data/Pancreas/endocrinogenesis_day15.h5ad
       derived:
         process_method: load_data
-        process_args:
-          process_cytotrace: true
         rel_path: data/processed/pancreas_processed.h5ad
     pbmc68k:
       data_file: pbmc68k.h5ad
@@ -56,9 +53,8 @@ data_external:
       rel_path: data/external/pbmc68k.h5ad
       url: https://ndownloader.figshare.com/files/27686886
       derived:
-        process_method: load_data
-        process_args: {}
-        rel_path: data/processed/pbmc68k_processed.h5ad
+        process_method: load_pbmc
+        rel_path: data/processed/pbmc_processed.h5ad
   pyrovelocity:
     download:
     - larry
@@ -71,10 +67,6 @@ data_external:
       dl_path: data/external/larry.h5ad
       rel_path: data/external/larry.h5ad
       url: https://ndownloader.figshare.com/files/37028569
-      derived:
-        process_method: ''
-        process_args: {}
-        rel_path: data/processed/larry_processed.h5ad
 model_training:
   train:
   - pancreas_model1
@@ -94,29 +86,14 @@ model_training:
     vector_field_parameters:
       basis: umap
     training_parameters:
-      _target_: pyrovelocity.api.train_model
-      _partial_: true
       guide_type: auto_t0_constraint
-      model_type: auto
-      svi_train: false
-      batch_size: -1
-      train_size: 1.0
-      use_gpu: 0
-      likelihood: Poisson
-      num_samples: 30
       log_every: 100
       cell_state: clusters
       patient_improve: 0.0001
       patient_init: 45
-      seed: 99
+      max_epochs: 4000
       lr: 0.01
-      max_epochs: 2000
-      include_prior: true
-      library_size: true
-      offset: false
-      input_type: raw
-      cell_specific_kinetics: null
-      kinetics_num: 2
+      train_size: 1.0
       loss_plot_path: models/pancreas_model1/loss_plot.png
   pancreas_model2:
     path: models/pancreas_model2
@@ -129,34 +106,20 @@ model_training:
     vector_field_parameters:
       basis: umap
     training_parameters:
-      _target_: pyrovelocity.api.train_model
-      _partial_: true
       guide_type: auto
-      model_type: auto
-      svi_train: false
-      batch_size: -1
-      train_size: 1.0
-      use_gpu: 0
-      likelihood: Poisson
-      num_samples: 30
       log_every: 100
       cell_state: clusters
       patient_improve: 0.0001
       patient_init: 45
-      seed: 99
-      lr: 0.01
-      max_epochs: 2000
-      include_prior: true
-      library_size: true
+      max_epochs: 4000
       offset: true
-      input_type: raw
-      cell_specific_kinetics: null
-      kinetics_num: 2
+      lr: 0.01
+      train_size: 1.0
       loss_plot_path: models/pancreas_model2/loss_plot.png
   pbmc68k_model1:
     path: models/pbmc68k_model1
     model_path: models/pbmc68k_model1/model
-    input_data_path: data/processed/pbmc68k_processed.h5ad
+    input_data_path: data/processed/pbmc_processed.h5ad
     trained_data_path: models/pbmc68k_model1/trained.h5ad
     pyrovelocity_data_path: models/pbmc68k_model1/pyrovelocity.pkl
     metrics_path: models/pbmc68k_model1/metrics.json
@@ -164,34 +127,19 @@ model_training:
     vector_field_parameters:
       basis: tsne
     training_parameters:
-      _target_: pyrovelocity.api.train_model
-      _partial_: true
       guide_type: auto_t0_constraint
-      model_type: auto
-      svi_train: false
-      batch_size: -1
-      train_size: 1.0
-      use_gpu: 0
-      likelihood: Poisson
-      num_samples: 30
       log_every: 100
       cell_state: celltype
       patient_improve: 0.0001
       patient_init: 45
-      seed: 99
+      max_epochs: 4000
       lr: 0.01
-      max_epochs: 2000
-      include_prior: true
-      library_size: true
-      offset: false
-      input_type: raw
-      cell_specific_kinetics: null
-      kinetics_num: 2
+      train_size: 1.0
       loss_plot_path: models/pbmc68k_model1/loss_plot.png
   pbmc68k_model2:
     path: models/pbmc68k_model2
     model_path: models/pbmc68k_model2/model
-    input_data_path: data/processed/pbmc68k_processed.h5ad
+    input_data_path: data/processed/pbmc_processed.h5ad
     trained_data_path: models/pbmc68k_model2/trained.h5ad
     pyrovelocity_data_path: models/pbmc68k_model2/pyrovelocity.pkl
     metrics_path: models/pbmc68k_model2/metrics.json
@@ -199,29 +147,15 @@ model_training:
     vector_field_parameters:
       basis: tsne
     training_parameters:
-      _target_: pyrovelocity.api.train_model
-      _partial_: true
       guide_type: auto
-      model_type: auto
-      svi_train: false
-      batch_size: -1
-      train_size: 1.0
-      use_gpu: 0
-      likelihood: Poisson
-      num_samples: 30
       log_every: 100
       cell_state: celltype
       patient_improve: 0.0001
       patient_init: 45
-      seed: 99
-      lr: 0.01
-      max_epochs: 2000
-      include_prior: true
-      library_size: true
+      max_epochs: 4000
       offset: true
-      input_type: raw
-      cell_specific_kinetics: null
-      kinetics_num: 2
+      lr: 0.01
+      train_size: 1.0
       loss_plot_path: models/pbmc68k_model2/loss_plot.png
   pons_model1:
     path: models/pons_model1
@@ -234,29 +168,14 @@ model_training:
     vector_field_parameters:
       basis: umap
     training_parameters:
-      _target_: pyrovelocity.api.train_model
-      _partial_: true
       guide_type: auto_t0_constraint
-      model_type: auto
-      svi_train: false
-      batch_size: -1
-      train_size: 1.0
-      use_gpu: 0
-      likelihood: Poisson
-      num_samples: 30
       log_every: 100
       cell_state: celltype
       patient_improve: 0.0001
       patient_init: 45
-      seed: 99
+      max_epochs: 4000
       lr: 0.01
-      max_epochs: 2000
-      include_prior: true
-      library_size: true
-      offset: false
-      input_type: raw
-      cell_specific_kinetics: null
-      kinetics_num: 2
+      train_size: 1.0
       loss_plot_path: models/pons_model1/loss_plot.png
   pons_model2:
     path: models/pons_model2
@@ -269,29 +188,15 @@ model_training:
     vector_field_parameters:
       basis: umap
     training_parameters:
-      _target_: pyrovelocity.api.train_model
-      _partial_: true
       guide_type: auto
-      model_type: auto
-      svi_train: false
-      batch_size: -1
-      train_size: 1.0
-      use_gpu: 0
-      likelihood: Poisson
-      num_samples: 30
       log_every: 100
       cell_state: celltype
       patient_improve: 0.0001
       patient_init: 45
-      seed: 99
-      lr: 0.01
-      max_epochs: 2000
-      include_prior: true
-      library_size: true
+      max_epochs: 4000
       offset: true
-      input_type: raw
-      cell_specific_kinetics: null
-      kinetics_num: 2
+      lr: 0.01
+      train_size: 1.0
       loss_plot_path: models/pons_model2/loss_plot.png
 reports:
   model_summary:
