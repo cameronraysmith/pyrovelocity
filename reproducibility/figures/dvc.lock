@@ -51,17 +51,17 @@ stages:
             rel_path: data/processed/pancreas_processed.h5ad
     outs:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 7af1dfb39e8d77008a94b1c17c9c3858
-      size: 424767328
+      md5: 442e63eb9e694ac4d5696bf7a6a93ac0
+      size: 424775272
   train_pancreas_model1:
-    cmd: /usr/bin/time -v python train.py model_training.train=[pancreas_model1]
+    cmd: python train.py model_training.train=[pancreas_model1]
     deps:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 7af1dfb39e8d77008a94b1c17c9c3858
-      size: 424767328
+      md5: 442e63eb9e694ac4d5696bf7a6a93ac0
+      size: 424775272
     - path: train.py
-      md5: 82c7d592259acee27c30bdfb5abe1414
-      size: 7924
+      md5: 73edd290fb71a62721b22a57035cbef6
+      size: 7947
     params:
       config.yaml:
         model_training.pancreas_model1:
@@ -101,24 +101,24 @@ stages:
             loss_plot_path: models/pancreas_model1/loss_plot.png
     outs:
     - path: models/pancreas_model1/loss_plot.png
-      md5: e6b040025b46593fd9676e3d1a47a69f
-      size: 12367
+      md5: 92574c7781f07bea7769485cbb51b8f0
+      size: 12280
     - path: models/pancreas_model1/metrics.json
-      md5: fb4f7d8b8f29a0a0f99dbbf32b4e23d6
-      size: 156
+      md5: 32a6739b88ecf34a367268feacfb9e6a
+      size: 153
     - path: models/pancreas_model1/model
-      md5: 631b8571669ff6e6f5289920990ec84f.dir
-      size: 1159230
-      nfiles: 4
+      md5: bc42fc058f187afc81186c4ec497383e.dir
+      size: 1207977
+      nfiles: 2
     - path: models/pancreas_model1/pyrovelocity.pkl
-      md5: 0543be5444d65de81d16b5d82fbd7a11
+      md5: e9e0fd374f4a7662ba52fc865ce4ebca
       size: 7102321859
     - path: models/pancreas_model1/run_info.json
-      md5: 7d48748bc525a065e1b8e8bfbcad0d86
+      md5: e12202daebdfda176b7b744c312a51e8
       size: 436
     - path: models/pancreas_model1/trained.h5ad
-      md5: f356554ccb853fe47f564701072c8482
-      size: 489752168
+      md5: a018633624344f6d3e7d1494c8ea6137
+      size: 489882800
   data_download_pbmc68k:
     cmd: python data_download.py data_external.sources=[scvelo] data_external.scvelo.download=[pbmc68k]
     deps:
@@ -168,8 +168,8 @@ stages:
             rel_path: data/processed/pbmc68k_processed.h5ad
     outs:
     - path: data/processed/pbmc68k_processed.h5ad
-      md5: 8833461e46bfb395df94f22b1cd02f2e
-      size: 1890403966
+      md5: 2ce0431688675264a85a1419bb4726f6
+      size: 1890424441
   train_pbmc68k_model1:
     cmd: /usr/bin/time -v python train.py model_training.train=[pbmc68k_model1]
     deps:
@@ -293,11 +293,11 @@ stages:
       md5: f0886a59e8ad697ddf7e9afa24d97d5d
       size: 5805
     - path: models/pancreas_model1/pyrovelocity.pkl
-      md5: 0543be5444d65de81d16b5d82fbd7a11
+      md5: e9e0fd374f4a7662ba52fc865ce4ebca
       size: 7102321859
     - path: models/pancreas_model1/trained.h5ad
-      md5: f356554ccb853fe47f564701072c8482
-      size: 489752168
+      md5: a018633624344f6d3e7d1494c8ea6137
+      size: 489882800
     params:
       config.yaml:
         model_training.pancreas_model1:
@@ -342,17 +342,17 @@ stages:
           vector_field_plot: reports/fig2/fig2_pancreas_vector_field.pdf
     outs:
     - path: reports/fig2/fig2_pancreas_rainbow.pdf
-      md5: 5101f8851becc3e9bdd4dae913002cdd
-      size: 660882
+      md5: c4043757d2326b52d3b4d4694de10c36
+      size: 673574
     - path: reports/fig2/fig2_pancreas_shared_time.pdf
-      md5: bd9c535bd1a2a47eab893b76c66f5cd7
-      size: 624140
+      md5: a14af34bbec8535210d5d2052acc2b09
+      size: 659728
     - path: reports/fig2/fig2_pancreas_vector_field.pdf
-      md5: 79427fbd111585720f14df0d211f2616
-      size: 407951
+      md5: 89effa08f6c0f598b85bdfdc6a0b722b
+      size: 407981
     - path: reports/fig2/fig2_pancreas_volcano.pdf
-      md5: 91b10879f0fe35b942e2ef393e538d45
-      size: 47004
+      md5: a85c768829070620a071ea4425824197
+      size: 46757
   data_download_larry:
     cmd: python data_download.py data_external.sources=[pyrovelocity] data_external.pyrovelocity.download=[larry]
     deps:
@@ -381,11 +381,11 @@ stages:
     cmd: /usr/bin/time -v python train.py model_training.train=[pancreas_model2]
     deps:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 7af1dfb39e8d77008a94b1c17c9c3858
-      size: 424767328
+      md5: 442e63eb9e694ac4d5696bf7a6a93ac0
+      size: 424775272
     - path: train.py
-      md5: 82c7d592259acee27c30bdfb5abe1414
-      size: 7924
+      md5: 73edd290fb71a62721b22a57035cbef6
+      size: 7947
     params:
       config.yaml:
         model_training.pancreas_model2:
@@ -425,24 +425,24 @@ stages:
             loss_plot_path: models/pancreas_model2/loss_plot.png
     outs:
     - path: models/pancreas_model2/loss_plot.png
-      md5: 5eae442d5d4a4f3dd3b1e58f1abdac22
-      size: 12183
+      md5: f69371d94149d20a57c7335780e8b3c4
+      size: 12221
     - path: models/pancreas_model2/metrics.json
-      md5: 10f993ddedb355909388c557452809c6
-      size: 155
+      md5: c73431a30c62ee3fd387d1fe1a9544de
+      size: 154
     - path: models/pancreas_model2/model
-      md5: b919de92e4939d9f6e5108d908a085bc.dir
-      size: 1735217
-      nfiles: 4
+      md5: 7f26072843f6cbad29785e90ddea2f30.dir
+      size: 1783913
+      nfiles: 2
     - path: models/pancreas_model2/pyrovelocity.pkl
-      md5: 439bf1f7442d078e2ab76ccfd8944cbe
+      md5: 9c87b62ef7d9909e7847fb7e9a77d616
       size: 6216001966
     - path: models/pancreas_model2/run_info.json
-      md5: 2fce72e55383a3e4d8544e39973ac6bd
+      md5: 461ee4eb4cb092fb2492a11c2f9cfc07
       size: 436
     - path: models/pancreas_model2/trained.h5ad
-      md5: adc4adf43682e215ded3974b57abad44
-      size: 489752168
+      md5: 982cd71518a376ded891494949fe661c
+      size: 489882800
   train_pbmc68k_model2:
     cmd: /usr/bin/time -v python train.py model_training.train=[pbmc68k_model2]
     deps:
