@@ -1100,7 +1100,9 @@ def plot_multiadata(adatas):
 # Cell
 # https://stackoverflow.com/questions/15408371/cumulative-distribution-plots-python
 def cumulative_boxplot():
-    data = adata_copy[adata_copy.obs.age == "A",].obs.n_counts
+    data = adata_copy[
+        adata_copy.obs.age == "A",
+    ].obs.n_counts
     # evaluate the histogram
     values, base = np.histogram(data, bins=10)
     # evaluate the cumulative

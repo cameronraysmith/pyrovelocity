@@ -130,7 +130,7 @@ stages:
           - data_external.scvelo.pbmc68k
     outs:
       - ${data_external.scvelo.pbmc68k.derived.rel_path}
-          # persist: true
+        # persist: true
 
   preprocess_pons:
     cmd: python preprocess.py data_external.sources=[velocyto] data_external.velocyto.process=[pons]
@@ -143,7 +143,7 @@ stages:
           - data_external.velocyto.pons
     outs:
       - ${data_external.velocyto.pons.derived.rel_path}
-          # persist: true
+        # persist: true
 
   train_pancreas_model1:
     #cmd: /usr/bin/time -v python train.py model_training.train=[pancreas_model1]
@@ -353,15 +353,15 @@ stages:
           - reports.model_summary.pancreas_model1
     outs:
       - ${reports.model_summary.pancreas_model1.volcano_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model1.rainbow_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model1.vector_field_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model1.rainbow_plot}.png
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model1.vector_field_plot}.png
-          # persist: true         
+        # persist: true
 
   summarize_pancreas_model2:
     cmd: python summarize.py reports.model_summary.summarize=[pancreas_model2]
@@ -375,15 +375,15 @@ stages:
           - reports.model_summary.pancreas_model2
     outs:
       - ${reports.model_summary.pancreas_model2.volcano_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model2.rainbow_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model2.vector_field_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model2.rainbow_plot}.png
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pancreas_model2.vector_field_plot}.png
-          # persist: true         
+        # persist: true
 
   summarize_pbmc68k_model1:
     cmd: python summarize.py reports.model_summary.summarize=[pbmc68k_model1]
@@ -397,15 +397,15 @@ stages:
           - reports.model_summary.pbmc68k_model1
     outs:
       - ${reports.model_summary.pbmc68k_model1.volcano_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model1.rainbow_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model1.vector_field_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model1.rainbow_plot}.png
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model1.vector_field_plot}.png
-          # persist: true         
+        # persist: true
 
   summarize_pbmc68k_model2:
     cmd: python summarize.py reports.model_summary.summarize=[pbmc68k_model2]
@@ -419,15 +419,15 @@ stages:
           - reports.model_summary.pbmc68k_model2
     outs:
       - ${reports.model_summary.pbmc68k_model2.volcano_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model2.rainbow_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model2.vector_field_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model2.rainbow_plot}.png
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pbmc68k_model2.vector_field_plot}.png
-          # persist: true         
+        # persist: true
 
   summarize_pons_model1:
     cmd: python summarize.py reports.model_summary.summarize=[pons_model1]
@@ -441,15 +441,15 @@ stages:
           - reports.model_summary.pons_model1
     outs:
       - ${reports.model_summary.pons_model1.volcano_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model1.rainbow_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model1.vector_field_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model1.rainbow_plot}.png
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model1.vector_field_plot}.png
-          # persist: true         
+        # persist: true
 
   summarize_pons_model2:
     cmd: python summarize.py reports.model_summary.summarize=[pons_model2]
@@ -463,12 +463,12 @@ stages:
           - reports.model_summary.pons_model2
     outs:
       - ${reports.model_summary.pons_model2.volcano_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model2.rainbow_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model2.vector_field_plot}
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model2.rainbow_plot}.png
-          # persist: true         
+        # persist: true
       - ${reports.model_summary.pons_model2.vector_field_plot}.png
-          # persist: true         
+        # persist: true
