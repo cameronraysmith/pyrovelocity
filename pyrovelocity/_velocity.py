@@ -375,8 +375,8 @@ class PyroVelocity(VelocityTrainingMixin, BaseModelClass):
         self,
         adata,
         model_posterior_samples,
-        vector_field_basis: str = "umap",
-        ncpus_use: int = 4,
+        vector_field_basis,
+        ncpus_use,
     ):
         """reduce posterior samples by precomputing metrics."""
         # adata = self._adata_manager.adata
@@ -438,7 +438,6 @@ class PyroVelocity(VelocityTrainingMixin, BaseModelClass):
         return model_posterior_samples
 
     def save_prediction_pkl(self, model_posterior_samples, pyrovelocity_data_path):
-        logger.info(f"Saving pyrovelocity data: {pyrovelocity_data_path}")
         with open(pyrovelocity_data_path, "wb") as f:
             pickle.dump(model_posterior_samples, f)
 
