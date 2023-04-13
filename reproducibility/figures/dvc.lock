@@ -57,11 +57,11 @@ stages:
     cmd: python train.py model_training.train=[pancreas_model1]
     deps:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 442e63eb9e694ac4d5696bf7a6a93ac0
+      md5: 14f5abed25caaaaf7be172657b809b96
       size: 424775272
     - path: train.py
-      md5: 73edd290fb71a62721b22a57035cbef6
-      size: 7947
+      md5: ba63711c5bf0ef1f5f0fa7c99e4a80fa
+      size: 8302
     params:
       config.yaml:
         model_training.pancreas_model1:
@@ -104,20 +104,20 @@ stages:
       md5: 92574c7781f07bea7769485cbb51b8f0
       size: 12280
     - path: models/pancreas_model1/metrics.json
-      md5: 444299e5f8a86bc946ccc543e0f71d96
-      size: 153
+      md5: a49251fcbe9d96b70da73873b0f81b3b
+      size: 90
     - path: models/pancreas_model1/model
-      md5: 20f727e916113fd3adb4f1302a2d92f4.dir
-      size: 1207977
-      nfiles: 2
+      md5: cfc9275534caa04164db53dcf5a94fb4.dir
+      size: 635690
+      nfiles: 1
     - path: models/pancreas_model1/pyrovelocity.pkl
-      md5: e9e0fd374f4a7662ba52fc865ce4ebca
-      size: 7102321859
+      md5: 12657556fb88c99c401d1dad10806b60
+      size: 952193370
     - path: models/pancreas_model1/run_info.json
-      md5: 3232c19491cbc6624049276564d54d3d
+      md5: 89f114cbccbc5357006752c681250a4a
       size: 436
     - path: models/pancreas_model1/trained.h5ad
-      md5: c8ffba512fbee703c19c5608539e726a
+      md5: f8faa65c0087e2e88bee79aa31e834e4
       size: 489882800
   data_download_pbmc68k:
     cmd: python data_download.py data_external.sources=[scvelo] data_external.scvelo.download=[pbmc68k]
@@ -728,14 +728,14 @@ stages:
     cmd: python summarize.py reports.model_summary.summarize=[pancreas_model1]
     deps:
     - path: models/pancreas_model1/pyrovelocity.pkl
-      md5: e9e0fd374f4a7662ba52fc865ce4ebca
-      size: 7102321859
+      md5: 12657556fb88c99c401d1dad10806b60
+      size: 952193370
     - path: models/pancreas_model1/trained.h5ad
-      md5: c8ffba512fbee703c19c5608539e726a
+      md5: f8faa65c0087e2e88bee79aa31e834e4
       size: 489882800
     - path: summarize.py
-      md5: 42746a8362f9b88d961dc7da7614c7dc
-      size: 7036
+      md5: 0dd4bdc367a163856f6b03bfb9e20cce
+      size: 7035
     params:
       config.yaml:
         model_training.pancreas_model1:
@@ -784,20 +784,20 @@ stages:
           biomarker_phaseportrait_plot: reports/pancreas_model1/markers_phaseportrait.pdf
     outs:
     - path: reports/pancreas_model1/rainbow.pdf
-      md5: d0529b7629925a7c66cb6a415783a38c
+      md5: c892425be12d9e08079d24368180dd03
       size: 673574
     - path: reports/pancreas_model1/rainbow.pdf.png
       md5: b7d5256461fdce30a32605f72bafd553
       size: 2076300
     - path: reports/pancreas_model1/vector_field.pdf
-      md5: 8ef39c127592522ae6ade28df07c3ed7
+      md5: 8620286ea6d87bbdfba7cf596a6033c9
       size: 397543
     - path: reports/pancreas_model1/vector_field.pdf.png
       md5: 52b32bae85976453665c5f60b5a575bd
       size: 691091
     - path: reports/pancreas_model1/volcano.pdf
-      md5: 263881a8e54b91972a01f040333910a7
-      size: 46757
+      md5: b176cd08e83eb2d4e7bf9c9c188a9ecf
+      size: 21304
   summarize_pancreas_model2:
     cmd: python summarize.py reports.model_summary.summarize=[pancreas_model2]
     deps:
