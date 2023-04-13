@@ -140,7 +140,7 @@ def train(conf: DictConfig, logger: Logger) -> None:
                 )
                 logger.info(
                     "Data attributes after computation of vector field uncertainty"
-                )                
+                )
                 print_attributes(adata_model_pos[1])
 
                 run_id = run.info.run_id
