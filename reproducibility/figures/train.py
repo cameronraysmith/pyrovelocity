@@ -1,12 +1,9 @@
 import json
 import multiprocessing
 import os
-import pickle
 import uuid
 from logging import Logger
 from pathlib import Path
-from statistics import harmonic_mean
-from typing import Text
 
 import hydra
 import mlflow
@@ -17,8 +14,6 @@ from omegaconf import DictConfig
 from pyrovelocity.api import train_model
 from pyrovelocity.config import print_config_tree
 from pyrovelocity.data import load_data
-from pyrovelocity.plot import compute_mean_vector_field
-from pyrovelocity.plot import vector_field_uncertainty
 from pyrovelocity.utils import filter_startswith_dict
 from pyrovelocity.utils import get_pylogger
 from pyrovelocity.utils import mae_evaluate
@@ -72,7 +67,9 @@ def train(conf: DictConfig, logger: Logger) -> None:
             print_attributes(adata)
         else:
             logger.error(f"Input data: {processed_path} does not exist")
-            raise Exception(f"Check {processed_path} output of preprocessing stage.")
+            raise FileNotFoundError(
+                f"Check {processed_path} output of preprocessing stage."
+            )
 
         #############
         # train model
@@ -111,12 +108,13 @@ def train(conf: DictConfig, logger: Logger) -> None:
                     ),
                 )
 
-                # logger.info(f"Data attributes after model training")
-                # print_attributes(adata_model_pos[1])
+                logger.info("Data attributes after model training")
+                print_attributes(adata_model_pos[1])
+
                 mae_df = mae_evaluate(adata_model_pos[1], adata)
                 mlflow.log_metric("MAE", mae_df["MAE"].mean())
 
-                # logger.info("computing vector field uncertainty")
+                logger.info("computing vector field uncertainty")
                 # v_map_all, embeds_radian, fdri = vector_field_uncertainty(
                 #    adata,
                 #    adata_model_pos[1],
@@ -132,12 +130,22 @@ def train(conf: DictConfig, logger: Logger) -> None:
                 # )
                 # print_attributes(adata_model_pos[1])
 
+                reduced_adata_model_pos = adata_model_pos[
+                    0
+                ].reduce_posterior_samples_dict(
+                    adata,
+                    adata_model_pos[1],
+                    vector_field_basis=vector_field_basis,
+                    ncpus_use=ncpus_use,
+                )
+                logger.info(
+                    "Data attributes after computation of vector field uncertainty"
+                )                
+                print_attributes(adata_model_pos[1])
+
                 run_id = run.info.run_id
 
-            reduced_adata_model_pos = adata_model_pos[0].reduce_posterior_samples_dict(
-                adata, adata_model_pos[1]
-            )
-
+            logger.info(f"Saving pyrovelocity data: {pyrovelocity_data_path}")
             adata_model_pos[0].save_prediction_pkl(
                 reduced_adata_model_pos, pyrovelocity_data_path
             )
