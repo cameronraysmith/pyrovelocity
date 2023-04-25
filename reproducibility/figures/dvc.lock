@@ -1531,3 +1531,30 @@ stages:
     - path: reports/medium_model2/volcano.pdf
       md5: 9feea92bb557edbee7952e1c4df573e3
       size: 19646
+  preprocess_larry:
+    cmd: python preprocess.py data_external.sources=[pyrovelocity] data_external.pyrovelocity.process=[larry]
+    deps:
+    - path: data/external/larry.h5ad
+      md5: d618305c0ee0e41570b1147e63df332a
+      size: 1525338690
+    - path: preprocess.py
+      md5: bf09c86fc25b1d1a98b9aa1c5fa04361
+      size: 2757
+    params:
+      config.yaml:
+        base:
+          log_level: INFO
+        data_external.pyrovelocity.larry:
+          data_file: larry.h5ad
+          dl_root: data/external
+          dl_path: data/external/larry.h5ad
+          rel_path: data/external/larry.h5ad
+          url: https://ndownloader.figshare.com/files/37028569
+          derived:
+            process_method: load_data
+            process_args: {}
+            rel_path: data/processed/larry_processed.h5ad
+    outs:
+    - path: data/processed/larry_processed.h5ad
+      md5: 7ff4be5438c597eb86e341001439eba7
+      size: 5361836782
