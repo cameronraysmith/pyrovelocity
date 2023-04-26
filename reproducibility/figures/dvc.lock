@@ -1558,3 +1558,69 @@ stages:
     - path: data/processed/larry_processed.h5ad
       md5: b560530dc084582b04c57cba7bcb07e7
       size: 5361832686
+  train_larry_model2:
+    cmd: /usr/bin/time -v python train.py model_training.train=[larry_model2]
+    deps:
+    - path: data/processed/larry_processed.h5ad
+      md5: b560530dc084582b04c57cba7bcb07e7
+      size: 5361832686
+    - path: train.py
+      md5: 0e7c46a112eab9290b48ad4f3deecaaa
+      size: 8684
+    params:
+      config.yaml:
+        model_training.larry_model2:
+          path: models/larry_model2
+          model_path: models/larry_model2/model
+          input_data_path: data/processed/larry_processed.h5ad
+          trained_data_path: models/larry_model2/trained.h5ad
+          pyrovelocity_data_path: models/larry_model2/pyrovelocity.pkl
+          metrics_path: models/larry_model2/metrics.json
+          run_info_path: models/larry_model2/run_info.json
+          vector_field_parameters:
+            basis: emb
+          training_parameters:
+            _target_: pyrovelocity.api.train_model
+            _partial_: true
+            guide_type: auto
+            model_type: auto
+            svi_train: true
+            batch_size: 4000
+            train_size: 1.0
+            use_gpu: 0
+            likelihood: Poisson
+            num_samples: 30
+            log_every: 100
+            cell_state: state_info
+            patient_improve: 0.0001
+            patient_init: 45
+            seed: 99
+            lr: 0.01
+            max_epochs: 1000
+            include_prior: true
+            library_size: true
+            offset: true
+            input_type: raw
+            cell_specific_kinetics:
+            kinetics_num: 2
+            loss_plot_path: models/larry_model2/loss_plot.png
+    outs:
+    - path: models/larry_model2/loss_plot.png
+      md5: 079875138c9e1e054494036fa7dd1e9a
+      size: 11635
+    - path: models/larry_model2/metrics.json
+      md5: 2401eb5b4af9f759cf11b9ca98ec522c
+      size: 155
+    - path: models/larry_model2/model
+      md5: db09d839be6d527b9d9ba1b7a6d01211.dir
+      size: 2050986
+      nfiles: 1
+    - path: models/larry_model2/pyrovelocity.pkl
+      md5: e5c4f43ab541ed99e34e56cd72803686
+      size: 845919686
+    - path: models/larry_model2/run_info.json
+      md5: dd253da998244fe2fef0d2a6c149f072
+      size: 433
+    - path: models/larry_model2/trained.h5ad
+      md5: 3b213324776dd9b266b21b92c0fd98ca
+      size: 6296829206
