@@ -32,7 +32,8 @@ jobs:
         run: |
           echo "      EVENT_NAME:" "$GITHUB_EVENT_NAME"
           echo "             REF:" "$GITHUB_REF"
-          echo "       FULL_NAME:${{ github.event.repository.full_name }}"
+          echo "       FULL_NAME: ${{ github.event.repository.full_name }}"
+          echo "      REPOSITORY: ${{ github.repository }}"
           echo "REPOSITORY_OWNER:" "$GITHUB_REPOSITORY_OWNER"
           echo "        REF_NAME:" "$GITHUB_REF_NAME"
           echo "        HEAD_REF:" "$GITHUB_HEAD_REF"
