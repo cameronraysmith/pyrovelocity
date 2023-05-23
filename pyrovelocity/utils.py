@@ -24,6 +24,16 @@ from torch.nn.functional import softmax
 from torch.nn.functional import softplus
 
 
+def trace(func):
+    def wrapper(*args, **kwargs):
+        params = list(args) + [f"{k}={v}" for k, v in kwargs.items()]
+        params_str = ",\n    ".join(map(str, params))
+        print(f"{func.__name__}(\n    {params_str},\n)")
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
 def inv(x: torch.Tensor) -> torch.Tensor:
     """
     Computes the element-wise reciprocal of a tensor.

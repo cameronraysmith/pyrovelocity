@@ -17,8 +17,10 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/simulated_medium.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/simulated_medium_processed.h5ad
+            thresh_histogram_path: data/processed/simulated_medium_thresh_histogram.pdf
     outs:
     - path: data/external/simulated_medium.h5ad
       md5: c8483b84bd68f57acb407f715f807f9e
@@ -40,8 +42,10 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/oligo_lite.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/pons_processed.h5ad
+            thresh_histogram_path: data/processed/pons_thresh_histogram.pdf
     outs:
     - path: data/external/oligo_lite.h5ad
       md5: 82f5e9f9736e556662f56653d2f927ab
@@ -65,7 +69,9 @@ stages:
             process_method: load_data
             process_args:
               process_cytotrace: true
+              count_thres: 4
             rel_path: data/processed/pancreas_processed.h5ad
+            thresh_histogram_path: data/processed/pancreas_thresh_histogram.pdf
     outs:
     - path: data/external/endocrinogenesis_day15.h5ad
       md5: 783ec70c72fd895eeea28c07735efc27
@@ -87,8 +93,10 @@ stages:
           url: https://ndownloader.figshare.com/files/27686886
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/pbmc68k_processed.h5ad
+            thresh_histogram_path: data/processed/pbmc68k_thresh_histogram.pdf
     outs:
     - path: data/external/pbmc68k.h5ad
       md5: ee0953e5fb994bc3cec05d4cf638ac79
@@ -110,8 +118,10 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_processed.h5ad
+            thresh_histogram_path: data/processed/larry_thresh_histogram.pdf
     outs:
     - path: data/external/larry.h5ad
       md5: d618305c0ee0e41570b1147e63df332a
@@ -133,8 +143,10 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_tips_processed.h5ad
+            thresh_histogram_path: data/processed/larry_tips_thresh_histogram.pdf
     outs:
     - path: data/external/larry_tips.h5ad
       md5: d618305c0ee0e41570b1147e63df332a
@@ -156,8 +168,10 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_mono_processed.h5ad
+            thresh_histogram_path: data/processed/larry_mono_thresh_histogram.pdf
     outs:
     - path: data/external/larry_mono.h5ad
       md5: 01f4e084c37482e26800ba4dfa0202bd
@@ -179,8 +193,10 @@ stages:
           url: https://ndownloader.figshare.com/files/37028575
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_neu_processed.h5ad
+            thresh_histogram_path: data/processed/larry_neu_thresh_histogram.pdf
     outs:
     - path: data/external/larry_neu.h5ad
       md5: 3192e2fe89d64f5d0d158c0e7d26c79d
@@ -202,8 +218,10 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_multilineage_processed.h5ad
+            thresh_histogram_path: data/processed/larry_multilineage_thresh_histogram.pdf
     outs:
     - path: data/external/larry_multilineage.h5ad
       md5: 9df0c8d32ad48f584327008e84e19133
@@ -225,8 +243,10 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/pbmc10k.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/pbmc10k_processed.h5ad
+            thresh_histogram_path: data/processed/pbmc10k_thresh_histogram.pdf
     outs:
     - path: data/external/pbmc10k.h5ad
       md5: 3b64b4cd122454610957f5c6086e2eac
@@ -238,8 +258,8 @@ stages:
       md5: c8483b84bd68f57acb407f715f807f9e
       size: 60248568
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.simulate_medium:
@@ -251,12 +271,20 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/simulated_medium.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/simulated_medium_processed.h5ad
+            thresh_histogram_path: data/processed/simulated_medium_thresh_histogram.pdf
     outs:
     - path: data/processed/simulated_medium_processed.h5ad
-      md5: 18bf69cf2c2b9a5e0e1eda93efe88bd3
-      size: 257351704
+      md5: f8ff420282196e81a8e861f60d50e967
+      size: 249243888
+    - path: data/processed/simulated_medium_thresh_histogram.pdf
+      md5: e2c300090969f1a10e1eb01b270cc26c
+      size: 17746
+    - path: data/processed/simulated_medium_thresh_histogram.pdf.png
+      md5: ee60475430fb0a6b1a8bbce59f09c1b8
+      size: 78499
   preprocess@pons:
     cmd: python preprocess.py process_data=[pons]
     deps:
@@ -264,8 +292,8 @@ stages:
       md5: 82f5e9f9736e556662f56653d2f927ab
       size: 82166707
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.pons:
@@ -277,12 +305,20 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/oligo_lite.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/pons_processed.h5ad
+            thresh_histogram_path: data/processed/pons_thresh_histogram.pdf
     outs:
     - path: data/processed/pons_processed.h5ad
-      md5: 8b66cd9859c0b22b7ca969a20816ea95
-      size: 740872463
+      md5: 3acf23c08d7c2567840dfaa016e50a24
+      size: 241821182
+    - path: data/processed/pons_thresh_histogram.pdf
+      md5: 82f47c732ae3cc1a1b62b68b3d1c37a7
+      size: 23820
+    - path: data/processed/pons_thresh_histogram.pdf.png
+      md5: fd09db1d0065d0c13b94216a641758a7
+      size: 108165
   preprocess@pancreas:
     cmd: python preprocess.py process_data=[pancreas]
     deps:
@@ -290,8 +326,8 @@ stages:
       md5: 783ec70c72fd895eeea28c07735efc27
       size: 52477898
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.pancreas:
@@ -305,11 +341,19 @@ stages:
             process_method: load_data
             process_args:
               process_cytotrace: true
+              count_thres: 4
             rel_path: data/processed/pancreas_processed.h5ad
+            thresh_histogram_path: data/processed/pancreas_thresh_histogram.pdf
     outs:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 4aaf4084689b5e10c60231552502bd98
-      size: 424784368
+      md5: 4962dab972042df4475ec8d73146a5f9
+      size: 142963946
+    - path: data/processed/pancreas_thresh_histogram.pdf
+      md5: a08bd90d4ef85c909631cb662deab3c6
+      size: 25480
+    - path: data/processed/pancreas_thresh_histogram.pdf.png
+      md5: b4d0394e562575558d142c0245c5b68c
+      size: 107519
   preprocess@pbmc68k:
     cmd: python preprocess.py process_data=[pbmc68k]
     deps:
@@ -317,8 +361,8 @@ stages:
       md5: ee0953e5fb994bc3cec05d4cf638ac79
       size: 123707283
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.pbmc68k:
@@ -330,12 +374,20 @@ stages:
           url: https://ndownloader.figshare.com/files/27686886
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/pbmc68k_processed.h5ad
+            thresh_histogram_path: data/processed/pbmc68k_thresh_histogram.pdf
     outs:
     - path: data/processed/pbmc68k_processed.h5ad
-      md5: 00512e0c632850bdb69625413a97bca6
-      size: 1677116165
+      md5: 440212d95a4ff113de02620bce823785
+      size: 705223086
+    - path: data/processed/pbmc68k_thresh_histogram.pdf
+      md5: 8660f548f7a9d0b3397605e529ba16e0
+      size: 14899
+    - path: data/processed/pbmc68k_thresh_histogram.pdf.png
+      md5: f1933e9db3153f03a5fc67da53105fb6
+      size: 67802
   preprocess@larry:
     cmd: python preprocess.py process_data=[larry]
     deps:
@@ -343,8 +395,8 @@ stages:
       md5: d618305c0ee0e41570b1147e63df332a
       size: 1525338690
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry:
@@ -356,12 +408,20 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_processed.h5ad
+            thresh_histogram_path: data/processed/larry_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_processed.h5ad
-      md5: 55ca2501b4f2b8c3d41ef1be5ec6c1d6
-      size: 5361832686
+      md5: 9acb5d31f469b92db4aeb7e6ae20793a
+      size: 2203146830
+    - path: data/processed/larry_thresh_histogram.pdf
+      md5: b9c955fddd0fea50e251c2ccee4a9c63
+      size: 25614
+    - path: data/processed/larry_thresh_histogram.pdf.png
+      md5: c2a86492a1941e8e452d7977b05f5dbd
+      size: 105500
   preprocess@larry_tips:
     cmd: python preprocess.py process_data=[larry_tips]
     deps:
@@ -369,8 +429,8 @@ stages:
       md5: d618305c0ee0e41570b1147e63df332a
       size: 1525338690
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_tips:
@@ -382,12 +442,20 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_tips_processed.h5ad
+            thresh_histogram_path: data/processed/larry_tips_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_tips_processed.h5ad
-      md5: 9a776e794d60642f46df5d27864a68f3
-      size: 2026603122
+      md5: d155508cc87be9565372c158fd8eaeb9
+      size: 707111778
+    - path: data/processed/larry_tips_thresh_histogram.pdf
+      md5: 75a62c0b360729f1e8812f47a0722908
+      size: 25060
+    - path: data/processed/larry_tips_thresh_histogram.pdf.png
+      md5: 17eeab1c0db561b33fc19f406956401b
+      size: 104374
   preprocess@larry_mono:
     cmd: python preprocess.py process_data=[larry_mono]
     deps:
@@ -395,8 +463,8 @@ stages:
       md5: 01f4e084c37482e26800ba4dfa0202bd
       size: 66173538
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_mono:
@@ -408,12 +476,20 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_mono_processed.h5ad
+            thresh_histogram_path: data/processed/larry_mono_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_mono_processed.h5ad
-      md5: 9df0c8d32ad48f584327008e84e19133
-      size: 112022632
+      md5: ebdf4930814f027a5cf858b07bb470db
+      size: 20878748
+    - path: data/processed/larry_mono_thresh_histogram.pdf
+      md5: 37da86433c8337aef64f2eff6073f657
+      size: 19767
+    - path: data/processed/larry_mono_thresh_histogram.pdf.png
+      md5: fa701812a2ec0636d0c18d7b8b917a58
+      size: 81413
   preprocess@larry_neu:
     cmd: python preprocess.py process_data=[larry_neu]
     deps:
@@ -421,8 +497,8 @@ stages:
       md5: 3192e2fe89d64f5d0d158c0e7d26c79d
       size: 60008807
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_neu:
@@ -434,12 +510,20 @@ stages:
           url: https://ndownloader.figshare.com/files/37028575
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_neu_processed.h5ad
+            thresh_histogram_path: data/processed/larry_neu_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_neu_processed.h5ad
-      md5: b1602d1ee3f37735ab7d9a485e50bf7b
-      size: 92577976
+      md5: 5727a90445d9b4dd392ddc9963556b4d
+      size: 16985686
+    - path: data/processed/larry_neu_thresh_histogram.pdf
+      md5: 2aad0d0d09715de51d7c41164b7bbcd4
+      size: 19853
+    - path: data/processed/larry_neu_thresh_histogram.pdf.png
+      md5: 3093d5dbe795c2a02ffc47592c292af5
+      size: 82206
   preprocess@larry_multilineage:
     cmd: python preprocess.py process_data=[larry_multilineage]
     deps:
@@ -447,8 +531,8 @@ stages:
       md5: 9df0c8d32ad48f584327008e84e19133
       size: 112022632
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_multilineage:
@@ -460,12 +544,20 @@ stages:
           url: https://ndownloader.figshare.com/files/37028569
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_multilineage_processed.h5ad
+            thresh_histogram_path: data/processed/larry_multilineage_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_multilineage_processed.h5ad
-      md5: dd92683b8a035a37cae58f7dc775847f
-      size: 291990233
+      md5: 7eeddf877f95bd5be6d9c0f3e951cc8f
+      size: 56575161
+    - path: data/processed/larry_multilineage_thresh_histogram.pdf
+      md5: 1c6d429298844d77be2f32c160d1137d
+      size: 23459
+    - path: data/processed/larry_multilineage_thresh_histogram.pdf.png
+      md5: ba526cc30a1bac52741f382b0d41fe03
+      size: 89374
   preprocess@pbmc10k:
     cmd: python preprocess.py process_data=[pbmc10k]
     deps:
@@ -473,8 +565,8 @@ stages:
       md5: 3b64b4cd122454610957f5c6086e2eac
       size: 592149007
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.pbmc10k:
@@ -486,18 +578,26 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/pbmc10k.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/pbmc10k_processed.h5ad
+            thresh_histogram_path: data/processed/pbmc10k_thresh_histogram.pdf
     outs:
     - path: data/processed/pbmc10k_processed.h5ad
-      md5: 795e204da33aa5a9b2ae7e8cd2668527
-      size: 1306068803
+      md5: e85e95320eec8b7b0828bec252867ecb
+      size: 865762589
+    - path: data/processed/pbmc10k_thresh_histogram.pdf
+      md5: 30f574af2820d8f9a54078ad2d5ea461
+      size: 29233
+    - path: data/processed/pbmc10k_thresh_histogram.pdf.png
+      md5: aee89b028f6bbaa1b643f6e573277d15
+      size: 143092
   train@simulate_model2:
     cmd: /usr/bin/time -v python train.py train_models=[simulate_model2]
     deps:
     - path: data/processed/simulated_medium_processed.h5ad
-      md5: 18bf69cf2c2b9a5e0e1eda93efe88bd3
-      size: 257351704
+      md5: f8ff420282196e81a8e861f60d50e967
+      size: 249243888
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -544,24 +644,24 @@ stages:
             loss_plot_path: models/simulate_medium_model2/loss_plot.png
     outs:
     - path: models/simulate_medium_model2/loss_plot.png
-      md5: 843b4e4ddd38874760868bfdcdd9f43d
-      size: 16009
+      md5: af8547eb85c9dddc3e201e4e2ba8bf09
+      size: 16517
     - path: models/simulate_medium_model2/model
-      md5: 03af7b2581afe33f017540cbc8521d1e.dir
+      md5: a8ed00f084a76e27504a2fdf3c7855e1.dir
       size: 946421
       nfiles: 2
     - path: models/simulate_medium_model2/posterior_samples.pkl.zst
       md5: 69570a3d1673e6235bc8ec7963ecebf8
       size: 671809959
     - path: models/simulate_medium_model2/run_info.json
-      md5: 9a4f21a08157dce514ebcdeadfb2a4eb
-      size: 455
+      md5: df9ee9467c78d025a162c9098189aa4d
+      size: 436
   train@pancreas_model2:
     cmd: /usr/bin/time -v python train.py train_models=[pancreas_model2]
     deps:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 4aaf4084689b5e10c60231552502bd98
-      size: 424784368
+      md5: 4962dab972042df4475ec8d73146a5f9
+      size: 142963946
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -608,24 +708,24 @@ stages:
             loss_plot_path: models/pancreas_model2/loss_plot.png
     outs:
     - path: models/pancreas_model2/loss_plot.png
-      md5: 8a8de154eb3e3ad3c1f11264eadedacd
-      size: 11500
+      md5: ae09e3586c4a1701fc43c5d1a64f5102
+      size: 12057
     - path: models/pancreas_model2/model
-      md5: cc8fe8c8545085b5fcabe5153e6d34f7.dir
-      size: 1783285
+      md5: 8b465449d56f9ad24e7c9e5acf3695fb.dir
+      size: 675381
       nfiles: 2
     - path: models/pancreas_model2/posterior_samples.pkl.zst
-      md5: 18aa92a99e5eeb690da61baa3f8566d8
-      size: 1564570700
+      md5: c0ffd50126c5603fd644929e0460658a
+      size: 453401727
     - path: models/pancreas_model2/run_info.json
-      md5: 180a179e3bad52cd03c2498616facdfe
-      size: 455
+      md5: af1d42a8eaefde47f817f8516ac5e3ae
+      size: 436
   train@pbmc68k_model2:
     cmd: /usr/bin/time -v python train.py train_models=[pbmc68k_model2]
     deps:
     - path: data/processed/pbmc68k_processed.h5ad
-      md5: 00512e0c632850bdb69625413a97bca6
-      size: 1677116165
+      md5: 440212d95a4ff113de02620bce823785
+      size: 705223086
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -672,24 +772,24 @@ stages:
             loss_plot_path: models/pbmc68k_model2/loss_plot.png
     outs:
     - path: models/pbmc68k_model2/loss_plot.png
-      md5: fc1be04e249edbfdae852be361a9b65e
-      size: 16196
+      md5: d5fe421cbb024f1c375d170f267119b9
+      size: 16264
     - path: models/pbmc68k_model2/model
-      md5: f053c32fd05d83067d15dc84eb3e2391.dir
-      size: 3521589
+      md5: 319765156e0a833744483a8375b0e73f.dir
+      size: 3250165
       nfiles: 2
     - path: models/pbmc68k_model2/posterior_samples.pkl.zst
-      md5: 2334200930efa2baeb2a4cc2e065bb48
-      size: 6869182180
+      md5: 24d01757379c34ee2dbc6e1922e5526f
+      size: 1656572938
     - path: models/pbmc68k_model2/run_info.json
-      md5: 21e7a16bafca4d1e614c9bae173989d8
+      md5: 3772bb7415de8cf80de3f89b7669efb6
       size: 454
   train@pons_model2:
     cmd: /usr/bin/time -v python train.py train_models=[pons_model2]
     deps:
     - path: data/processed/pons_processed.h5ad
-      md5: 8b66cd9859c0b22b7ca969a20816ea95
-      size: 740872463
+      md5: 3acf23c08d7c2567840dfaa016e50a24
+      size: 241821182
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -736,24 +836,24 @@ stages:
             loss_plot_path: models/pons_model2/loss_plot.png
     outs:
     - path: models/pons_model2/loss_plot.png
-      md5: 78780667ef0761b1e2fe2521492e3336
-      size: 11344
+      md5: 26987d2ceb1e81518919538ec2f38823
+      size: 12264
     - path: models/pons_model2/model
-      md5: 25c289ce21afc24351e35fefa2968931.dir
-      size: 1906485
+      md5: 0f34877c8b88761fc4aba5267432266b.dir
+      size: 747317
       nfiles: 2
     - path: models/pons_model2/posterior_samples.pkl.zst
-      md5: d9679ddd7b0192cd845325d95057fe30
-      size: 2495542100
+      md5: 0ef7984f2a667965a5794983c6f7e4d2
+      size: 690600564
     - path: models/pons_model2/run_info.json
-      md5: dbf6cefe0a7c918d6d12aaf1d7622d80
+      md5: a832420dcb6c5a5f8b4fbbe79cb832fb
       size: 451
   train@larry_model2:
     cmd: /usr/bin/time -v python train.py train_models=[larry_model2]
     deps:
     - path: data/processed/larry_processed.h5ad
-      md5: 55ca2501b4f2b8c3d41ef1be5ec6c1d6
-      size: 5361832686
+      md5: 9acb5d31f469b92db4aeb7e6ae20793a
+      size: 2203146830
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -800,24 +900,24 @@ stages:
             loss_plot_path: models/larry_model2/loss_plot.png
     outs:
     - path: models/larry_model2/loss_plot.png
-      md5: d86e765e57aa53a4573ff10de3822ea7
-      size: 11622
+      md5: 4028769a1d4528a414cb7253557848a3
+      size: 13504
     - path: models/larry_model2/model
-      md5: dccc83770203518b253080f8ec04b470.dir
-      size: 4037685
+      md5: a504f588280f2382654093d11c8d5f1e.dir
+      size: 3042933
       nfiles: 2
     - path: models/larry_model2/posterior_samples.pkl.zst
-      md5: c70656d75a5c16a3705a81d4d3bed75c
-      size: 21398884920
+      md5: d0d3a573abe9578a9025dde71d6ab79d
+      size: 8130240451
     - path: models/larry_model2/run_info.json
-      md5: aebd8c67d9d0889d3ca0180c7316e4d3
-      size: 452
+      md5: 293305c102567e6a5e33c3191cd7f287
+      size: 433
   train@larry_tips_model2:
     cmd: /usr/bin/time -v python train.py train_models=[larry_tips_model2]
     deps:
     - path: data/processed/larry_tips_processed.h5ad
-      md5: 9a776e794d60642f46df5d27864a68f3
-      size: 2026603122
+      md5: d155508cc87be9565372c158fd8eaeb9
+      size: 707111778
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -864,24 +964,24 @@ stages:
             loss_plot_path: models/larry_tips_model2/loss_plot.png
     outs:
     - path: models/larry_tips_model2/loss_plot.png
-      md5: 630c6d0b5bda3a771e19546b23582a18
-      size: 13501
+      md5: 855f63fd9d360842b73cad1351ac9bc2
+      size: 12709
     - path: models/larry_tips_model2/model
-      md5: d57eb10a924756f8a8ea7fa6736fe622.dir
-      size: 2530357
+      md5: 4dd8af8fbec32bf9b8e8d7eb2d1a0465.dir
+      size: 1438197
       nfiles: 2
     - path: models/larry_tips_model2/posterior_samples.pkl.zst
-      md5: 3676847c16a14530b94334aeb42b6ef8
-      size: 7954956389
+      md5: 829a80782f00406850d3b1f059e8dd37
+      size: 2576196689
     - path: models/larry_tips_model2/run_info.json
-      md5: 40a0dafcd2d9857009cb9d8307f70128
-      size: 457
+      md5: c209c4e657354a1e5d1eda0f6f02abc6
+      size: 438
   train@larry_mono_model2:
     cmd: /usr/bin/time -v python train.py train_models=[larry_mono_model2]
     deps:
     - path: data/processed/larry_mono_processed.h5ad
-      md5: 9df0c8d32ad48f584327008e84e19133
-      size: 112022632
+      md5: ebdf4930814f027a5cf858b07bb470db
+      size: 20878748
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -928,24 +1028,24 @@ stages:
             loss_plot_path: models/larry_mono_model2/loss_plot.png
     outs:
     - path: models/larry_mono_model2/loss_plot.png
-      md5: f23ab1572ee231091d47932e4f21c2bf
-      size: 11422
+      md5: 739b0bf7c4599a8b206904b2b88d54f0
+      size: 12647
     - path: models/larry_mono_model2/model
-      md5: 99d0ffe36a68992f9bdde239aaed1fad.dir
-      size: 1159925
+      md5: 289a0a4bbd533c6c8fc247874b1973d3.dir
+      size: 224821
       nfiles: 2
     - path: models/larry_mono_model2/posterior_samples.pkl.zst
-      md5: 71724b1de658963ceb84e8877c0d5be2
-      size: 376534463
+      md5: 629d459ebb58fc9520a50037f5b9bfd8
+      size: 57570160
     - path: models/larry_mono_model2/run_info.json
-      md5: 13270c6689d5f610de712f1e9933d574
-      size: 457
+      md5: 812f7332b2d8bc9eabf0e490006b1c42
+      size: 438
   train@larry_neu_model2:
     cmd: /usr/bin/time -v python train.py train_models=[larry_neu_model2]
     deps:
     - path: data/processed/larry_neu_processed.h5ad
-      md5: b1602d1ee3f37735ab7d9a485e50bf7b
-      size: 92577976
+      md5: 5727a90445d9b4dd392ddc9963556b4d
+      size: 16985686
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -992,24 +1092,24 @@ stages:
             loss_plot_path: models/larry_neu_model2/loss_plot.png
     outs:
     - path: models/larry_neu_model2/loss_plot.png
-      md5: 8bdab9feb9e4abc8c5d69d8837e9b3cd
-      size: 11561
+      md5: 9de94e3af0d2a0f19c4128774f897c50
+      size: 11615
     - path: models/larry_neu_model2/model
-      md5: c8229a9e2a7f65bb23f345cf34bd2f2d.dir
-      size: 1068981
+      md5: 2557b4aa2540f09d9f5f32b42bc75bab.dir
+      size: 200245
       nfiles: 2
     - path: models/larry_neu_model2/posterior_samples.pkl.zst
-      md5: 63e6e9e5841655fa242e51756749b9c4
-      size: 308318767
+      md5: d691a99d978abe5772770d57240ef98c
+      size: 45359345
     - path: models/larry_neu_model2/run_info.json
-      md5: 34226806d603981a4d2d3da465d8db3d
-      size: 456
+      md5: 3253ed7e8988641c7b5f3fc53a37f4da
+      size: 437
   train@larry_multilineage_model2:
     cmd: /usr/bin/time -v python train.py train_models=[larry_multilineage_model2]
     deps:
     - path: data/processed/larry_multilineage_processed.h5ad
-      md5: dd92683b8a035a37cae58f7dc775847f
-      size: 291990233
+      md5: 7eeddf877f95bd5be6d9c0f3e951cc8f
+      size: 56575161
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -1056,24 +1156,24 @@ stages:
             loss_plot_path: models/larry_multilineage_model2/loss_plot.png
     outs:
     - path: models/larry_multilineage_model2/loss_plot.png
-      md5: c54797e6b5df7a2f753c8953bece4f4c
-      size: 12593
+      md5: 480fe9aae388d5b0686ad0c99d3f0c94
+      size: 12612
     - path: models/larry_multilineage_model2/model
-      md5: beb205871dea22e8d0011260cc92069a.dir
-      size: 1716917
+      md5: 8da59186155564dc64fdf4150205ffb6.dir
+      size: 378357
       nfiles: 2
     - path: models/larry_multilineage_model2/posterior_samples.pkl.zst
-      md5: e60693c4e229ded5fc2c13b0e9267130
-      size: 1022220718
+      md5: a62a7a02a0df00079d3ae82eca9031b3
+      size: 169007869
     - path: models/larry_multilineage_model2/run_info.json
-      md5: 879e91d0c85bef9882dfe084d8dd114e
-      size: 465
+      md5: 8a7350464ac52e9b8a103aa881926cf1
+      size: 446
   train@pbmc10k_model2:
     cmd: /usr/bin/time -v python train.py train_models=[pbmc10k_model2]
     deps:
     - path: data/processed/pbmc10k_processed.h5ad
-      md5: 795e204da33aa5a9b2ae7e8cd2668527
-      size: 1306068803
+      md5: e85e95320eec8b7b0828bec252867ecb
+      size: 865762589
     - path: train.py
       md5: 4cf2c31c17dbb07e8de124c36735401b
       size: 6703
@@ -1120,26 +1220,26 @@ stages:
             loss_plot_path: models/pbmc10k_model2/loss_plot.png
     outs:
     - path: models/pbmc10k_model2/loss_plot.png
-      md5: 711249964722e4b0434e4c0eeaf5a78e
-      size: 11490
+      md5: e872ee1e5dbe9ed0e47eda47e55cde73
+      size: 12190
     - path: models/pbmc10k_model2/model
-      md5: d9b503bde48e045c6f46a9215252274e.dir
-      size: 2211125
+      md5: 17c51a7c323e065d1ee1edf4c87c99e7.dir
+      size: 1617269
       nfiles: 2
     - path: models/pbmc10k_model2/posterior_samples.pkl.zst
-      md5: 4c6871689a69c0c5621018131886b4dc
-      size: 4288915469
+      md5: e2c25c9b2f28261a097faf8ce791e2dd
+      size: 3335615123
     - path: models/pbmc10k_model2/run_info.json
-      md5: 8cf3e4f59cbf1806b26c73378400fd65
-      size: 454
+      md5: 5e76b77a9df51d8a9cb88c73152deb53
+      size: 435
   postprocess@simulate_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[simulate_model2]
     deps:
     - path: data/processed/simulated_medium_processed.h5ad
-      md5: 18bf69cf2c2b9a5e0e1eda93efe88bd3
-      size: 257351704
+      md5: f8ff420282196e81a8e861f60d50e967
+      size: 249243888
     - path: models/simulate_medium_model2/model
-      md5: 03af7b2581afe33f017540cbc8521d1e.dir
+      md5: a8ed00f084a76e27504a2fdf3c7855e1.dir
       size: 946421
       nfiles: 2
     - path: models/simulate_medium_model2/posterior_samples.pkl.zst
@@ -1191,27 +1291,27 @@ stages:
             loss_plot_path: models/simulate_medium_model2/loss_plot.png
     outs:
     - path: models/simulate_medium_model2/metrics.json
-      md5: e1191e8368542cfd6c17d6da382793ae
-      size: 97
+      md5: f2cb3bcf0134ee8dbe6c78b795df5a04
+      size: 98
     - path: models/simulate_medium_model2/pyrovelocity.pkl.zst
-      md5: ea76b339595510eb243611047d087d3d
-      size: 44193719
+      md5: ef8930b6f1576dc30baf7061d2ff011f
+      size: 44193206
     - path: models/simulate_medium_model2/trained.h5ad
-      md5: 92210ac9106d83277e7e2f0a904337dc
-      size: 283925496
+      md5: f08bf33bdc4e79bf2e0e86d88076e4c2
+      size: 275817728
   postprocess@pancreas_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[pancreas_model2]
     deps:
     - path: data/processed/pancreas_processed.h5ad
-      md5: 4aaf4084689b5e10c60231552502bd98
-      size: 424784368
+      md5: 4962dab972042df4475ec8d73146a5f9
+      size: 142963946
     - path: models/pancreas_model2/model
-      md5: cc8fe8c8545085b5fcabe5153e6d34f7.dir
-      size: 1783285
+      md5: 8b465449d56f9ad24e7c9e5acf3695fb.dir
+      size: 675381
       nfiles: 2
     - path: models/pancreas_model2/posterior_samples.pkl.zst
-      md5: 18aa92a99e5eeb690da61baa3f8566d8
-      size: 1564570700
+      md5: c0ffd50126c5603fd644929e0460658a
+      size: 453401727
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1258,27 +1358,27 @@ stages:
             loss_plot_path: models/pancreas_model2/loss_plot.png
     outs:
     - path: models/pancreas_model2/metrics.json
-      md5: 230daf0a2ab5dd691eb9706cf61c8174
-      size: 98
+      md5: 9709283690d191b81ec9d22037576815
+      size: 99
     - path: models/pancreas_model2/pyrovelocity.pkl.zst
-      md5: 143f044ba49870ba395c1974ea702d27
-      size: 105520126
+      md5: e589bc2a15f2db756df3ae9c2e1db3ed
+      size: 65630080
     - path: models/pancreas_model2/trained.h5ad
-      md5: d6871cdb5403d14454d842e6e8bc7969
-      size: 492522608
+      md5: db1f418ac3a13d7f0ec40adfbec0cbcf
+      size: 169776624
   postprocess@pbmc68k_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[pbmc68k_model2]
     deps:
     - path: data/processed/pbmc68k_processed.h5ad
-      md5: 00512e0c632850bdb69625413a97bca6
-      size: 1677116165
+      md5: 440212d95a4ff113de02620bce823785
+      size: 705223086
     - path: models/pbmc68k_model2/model
-      md5: f053c32fd05d83067d15dc84eb3e2391.dir
-      size: 3521589
+      md5: 319765156e0a833744483a8375b0e73f.dir
+      size: 3250165
       nfiles: 2
     - path: models/pbmc68k_model2/posterior_samples.pkl.zst
-      md5: 2334200930efa2baeb2a4cc2e065bb48
-      size: 6869182180
+      md5: 24d01757379c34ee2dbc6e1922e5526f
+      size: 1656572938
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1325,27 +1425,27 @@ stages:
             loss_plot_path: models/pbmc68k_model2/loss_plot.png
     outs:
     - path: models/pbmc68k_model2/metrics.json
-      md5: b0a6449a0dadb678aaf3e3fe6a503584
+      md5: 7a0cccb8350de3ebb0c2b383b21459e3
       size: 99
     - path: models/pbmc68k_model2/pyrovelocity.pkl.zst
-      md5: fe639f3f107789827275fad0dc4c1bd4
-      size: 679019086
+      md5: c4adabfaa2e0ea3baa15776847cc7a93
+      size: 513892944
     - path: models/pbmc68k_model2/trained.h5ad
-      md5: 0bcb9e487d242deabd6dec70bf31a254
-      size: 2150870473
+      md5: 1416f0cc98346453f87d197c61887aa2
+      size: 1112777602
   postprocess@pons_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[pons_model2]
     deps:
     - path: data/processed/pons_processed.h5ad
-      md5: 8b66cd9859c0b22b7ca969a20816ea95
-      size: 740872463
+      md5: 3acf23c08d7c2567840dfaa016e50a24
+      size: 241821182
     - path: models/pons_model2/model
-      md5: 25c289ce21afc24351e35fefa2968931.dir
-      size: 1906485
+      md5: 0f34877c8b88761fc4aba5267432266b.dir
+      size: 747317
       nfiles: 2
     - path: models/pons_model2/posterior_samples.pkl.zst
-      md5: d9679ddd7b0192cd845325d95057fe30
-      size: 2495542100
+      md5: 0ef7984f2a667965a5794983c6f7e4d2
+      size: 690600564
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1392,27 +1492,27 @@ stages:
             loss_plot_path: models/pons_model2/loss_plot.png
     outs:
     - path: models/pons_model2/metrics.json
-      md5: f8a681c49e5938747761d4dd932738a9
+      md5: 28f56d929186fd485c0edcd3a1846ac0
       size: 99
     - path: models/pons_model2/pyrovelocity.pkl.zst
-      md5: 6102fb752559082e3ebd2e33013a0f5f
-      size: 175510242
+      md5: e19265b3df8c7204f1711ba5139e0247
+      size: 107391424
     - path: models/pons_model2/trained.h5ad
-      md5: 7bf76d4663cda7587c3f5e1e279b8ce6
-      size: 859739291
+      md5: 392c542b606b76feeac271c0a687438d
+      size: 288360805
   postprocess@larry_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[larry_model2]
     deps:
     - path: data/processed/larry_processed.h5ad
-      md5: 55ca2501b4f2b8c3d41ef1be5ec6c1d6
-      size: 5361832686
+      md5: 9acb5d31f469b92db4aeb7e6ae20793a
+      size: 2203146830
     - path: models/larry_model2/model
-      md5: dccc83770203518b253080f8ec04b470.dir
-      size: 4037685
+      md5: a504f588280f2382654093d11c8d5f1e.dir
+      size: 3042933
       nfiles: 2
     - path: models/larry_model2/posterior_samples.pkl.zst
-      md5: c70656d75a5c16a3705a81d4d3bed75c
-      size: 21398884920
+      md5: d0d3a573abe9578a9025dde71d6ab79d
+      size: 8130240451
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1459,27 +1559,27 @@ stages:
             loss_plot_path: models/larry_model2/loss_plot.png
     outs:
     - path: models/larry_model2/metrics.json
-      md5: c92145bf435885da07a11833dad57eb3
-      size: 99
+      md5: c2a03df00e26ad0953d1ba26e0d5f424
+      size: 100
     - path: models/larry_model2/pyrovelocity.pkl.zst
-      md5: 5411628e572ab2952f85001e6fcb8a68
-      size: 1368571204
+      md5: 9e04d6b9595bf1e246c9b7ab107722ac
+      size: 916363882
     - path: models/larry_model2/trained.h5ad
-      md5: 653fe0f530036ae62155888cb2b16289
-      size: 6327385438
+      md5: 3c3c4f5e86c01c2699bcecd3a71bdb24
+      size: 2684816079
   postprocess@larry_tips_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[larry_tips_model2]
     deps:
     - path: data/processed/larry_tips_processed.h5ad
-      md5: 9a776e794d60642f46df5d27864a68f3
-      size: 2026603122
+      md5: d155508cc87be9565372c158fd8eaeb9
+      size: 707111778
     - path: models/larry_tips_model2/model
-      md5: d57eb10a924756f8a8ea7fa6736fe622.dir
-      size: 2530357
+      md5: 4dd8af8fbec32bf9b8e8d7eb2d1a0465.dir
+      size: 1438197
       nfiles: 2
     - path: models/larry_tips_model2/posterior_samples.pkl.zst
-      md5: 3676847c16a14530b94334aeb42b6ef8
-      size: 7954956389
+      md5: 829a80782f00406850d3b1f059e8dd37
+      size: 2576196689
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1526,27 +1626,27 @@ stages:
             loss_plot_path: models/larry_tips_model2/loss_plot.png
     outs:
     - path: models/larry_tips_model2/metrics.json
-      md5: 4f1d4fc2f5064ffefe788495b7c4ad96
+      md5: ed3c63806c11ff4453f22fbd372e5413
       size: 99
     - path: models/larry_tips_model2/pyrovelocity.pkl.zst
-      md5: d490daa40e5ed835791ab8273c006ad2
-      size: 515004641
+      md5: 0046be61af73fbe971b8f3b7a0a31a17
+      size: 328390612
     - path: models/larry_tips_model2/trained.h5ad
-      md5: 661e065a6bb1e06f957531509856b259
-      size: 2378233322
+      md5: 3164c029d7f40264d7b01e5541b00e12
+      size: 859395324
   postprocess@larry_mono_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[larry_mono_model2]
     deps:
     - path: data/processed/larry_mono_processed.h5ad
-      md5: 9df0c8d32ad48f584327008e84e19133
-      size: 112022632
+      md5: ebdf4930814f027a5cf858b07bb470db
+      size: 20878748
     - path: models/larry_mono_model2/model
-      md5: 99d0ffe36a68992f9bdde239aaed1fad.dir
-      size: 1159925
+      md5: 289a0a4bbd533c6c8fc247874b1973d3.dir
+      size: 224821
       nfiles: 2
     - path: models/larry_mono_model2/posterior_samples.pkl.zst
-      md5: 71724b1de658963ceb84e8877c0d5be2
-      size: 376534463
+      md5: 629d459ebb58fc9520a50037f5b9bfd8
+      size: 57570160
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1593,27 +1693,27 @@ stages:
             loss_plot_path: models/larry_mono_model2/loss_plot.png
     outs:
     - path: models/larry_mono_model2/metrics.json
-      md5: 45309ed62550acf41550c498aae98ffd
-      size: 97
+      md5: 53d232698ceed7e0eeed3b360495c83b
+      size: 99
     - path: models/larry_mono_model2/pyrovelocity.pkl.zst
-      md5: 6fc7960842938b4229da7462b3717d9c
-      size: 29734791
+      md5: 563b2292845f0b9e6efb7be3c1dce28d
+      size: 10659012
     - path: models/larry_mono_model2/trained.h5ad
-      md5: 392c7dbb36210d52c5928a85f4da7bfc
-      size: 128025936
+      md5: 25d418e8186ddbab158bf2015406101f
+      size: 25104916
   postprocess@larry_neu_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[larry_neu_model2]
     deps:
     - path: data/processed/larry_neu_processed.h5ad
-      md5: b1602d1ee3f37735ab7d9a485e50bf7b
-      size: 92577976
+      md5: 5727a90445d9b4dd392ddc9963556b4d
+      size: 16985686
     - path: models/larry_neu_model2/model
-      md5: c8229a9e2a7f65bb23f345cf34bd2f2d.dir
-      size: 1068981
+      md5: 2557b4aa2540f09d9f5f32b42bc75bab.dir
+      size: 200245
       nfiles: 2
     - path: models/larry_neu_model2/posterior_samples.pkl.zst
-      md5: 63e6e9e5841655fa242e51756749b9c4
-      size: 308318767
+      md5: d691a99d978abe5772770d57240ef98c
+      size: 45359345
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1660,27 +1760,27 @@ stages:
             loss_plot_path: models/larry_neu_model2/loss_plot.png
     outs:
     - path: models/larry_neu_model2/metrics.json
-      md5: 1aeef733b8d375fea8d947930fc11072
+      md5: 9fa450d65f392affe68488b34a760e4f
       size: 98
     - path: models/larry_neu_model2/pyrovelocity.pkl.zst
-      md5: 0e106789eec7ec47e43e24b53a58825a
-      size: 25862188
+      md5: 9bf602e57152397bba9a57a724d978e6
+      size: 9345592
     - path: models/larry_neu_model2/trained.h5ad
-      md5: e368f8894ee2c7af9e9d5320523a1344
-      size: 105830236
+      md5: 47974e5f444abdf8cf01467443dc1df7
+      size: 20338202
   postprocess@larry_multilineage_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[larry_multilineage_model2]
     deps:
     - path: data/processed/larry_multilineage_processed.h5ad
-      md5: dd92683b8a035a37cae58f7dc775847f
-      size: 291990233
+      md5: 7eeddf877f95bd5be6d9c0f3e951cc8f
+      size: 56575161
     - path: models/larry_multilineage_model2/model
-      md5: beb205871dea22e8d0011260cc92069a.dir
-      size: 1716917
+      md5: 8da59186155564dc64fdf4150205ffb6.dir
+      size: 378357
       nfiles: 2
     - path: models/larry_multilineage_model2/posterior_samples.pkl.zst
-      md5: e60693c4e229ded5fc2c13b0e9267130
-      size: 1022220718
+      md5: a62a7a02a0df00079d3ae82eca9031b3
+      size: 169007869
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1727,27 +1827,27 @@ stages:
             loss_plot_path: models/larry_multilineage_model2/loss_plot.png
     outs:
     - path: models/larry_multilineage_model2/metrics.json
-      md5: e806fb071118241b39c64dbe9e6ec5ea
-      size: 99
+      md5: 65b4b0644919dca528a19fc9299e6d1b
+      size: 98
     - path: models/larry_multilineage_model2/pyrovelocity.pkl.zst
-      md5: 713c587442cedf0f68ca041bbbb45484
-      size: 66381412
+      md5: c6dce321aa14c9bae803e2503d155171
+      size: 36144922
     - path: models/larry_multilineage_model2/trained.h5ad
-      md5: 77c0b115416766708c746349f324c859
-      size: 334122037
+      md5: 41207a30e9b357de5cdc6d3f2ecd6d0b
+      size: 67521149
   postprocess@pbmc10k_model2:
     cmd: /usr/bin/time -v python postprocess.py train_models=[pbmc10k_model2]
     deps:
     - path: data/processed/pbmc10k_processed.h5ad
-      md5: 795e204da33aa5a9b2ae7e8cd2668527
-      size: 1306068803
+      md5: e85e95320eec8b7b0828bec252867ecb
+      size: 865762589
     - path: models/pbmc10k_model2/model
-      md5: d9b503bde48e045c6f46a9215252274e.dir
-      size: 2211125
+      md5: 17c51a7c323e065d1ee1edf4c87c99e7.dir
+      size: 1617269
       nfiles: 2
     - path: models/pbmc10k_model2/posterior_samples.pkl.zst
-      md5: 4c6871689a69c0c5621018131886b4dc
-      size: 4288915469
+      md5: e2c25c9b2f28261a097faf8ce791e2dd
+      size: 3335615123
     - path: postprocess.py
       md5: 2d194b66a6964f4ac39022fe6a4fbb8f
       size: 5679
@@ -1794,26 +1894,26 @@ stages:
             loss_plot_path: models/pbmc10k_model2/loss_plot.png
     outs:
     - path: models/pbmc10k_model2/metrics.json
-      md5: c02571aa1a02b3098efd100269c9840a
+      md5: 6b4c99e01f10c1aa56f6695f8621036f
       size: 98
     - path: models/pbmc10k_model2/pyrovelocity.pkl.zst
-      md5: 6c429cfd714bd8fa25b30d57c653e810
-      size: 330050183
+      md5: 6fb18ff8e809e2151b9a36ddce4fd7f3
+      size: 266838725
     - path: models/pbmc10k_model2/trained.h5ad
-      md5: a4ea4b235e8f35c2db4e711ca0f9243b
-      size: 1529235151
+      md5: 211422bd3bfcdb07afb0973a3464bb7c
+      size: 1021599729
   summarize@pancreas_model2:
     cmd: python summarize.py train_models=[pancreas_model2]
     deps:
     - path: models/pancreas_model2/pyrovelocity.pkl.zst
-      md5: 143f044ba49870ba395c1974ea702d27
-      size: 105520126
+      md5: e589bc2a15f2db756df3ae9c2e1db3ed
+      size: 65630080
     - path: models/pancreas_model2/trained.h5ad
-      md5: d6871cdb5403d14454d842e6e8bc7969
-      size: 492522608
+      md5: db1f418ac3a13d7f0ec40adfbec0cbcf
+      size: 169776624
     - path: summarize.py
-      md5: e4e211ecb99b329107ad2f32de3df270
-      size: 16796
+      md5: 016615f3ecddbd066fdbd1a127043045
+      size: 16934
     params:
       config.yaml:
         base:
@@ -1834,41 +1934,50 @@ stages:
           fig2_part2_plot: reports/pancreas_model2/fig2_part2_plot.pdf
     outs:
     - path: data/processed/pancreas_model2_dataframe.pkl.zst
-      md5: bbff19677beed1c7cf3766506f391723
-      size: 12359084
+      md5: 234e75746db57d84b5bbf0f3758c4fe9
+      size: 4245340
     - path: reports/pancreas_model2/fig2_part1_plot.pdf
-      md5: b9cbccd2b2cb4d1f3f7744ca7ba33762
-      size: 430604
+      md5: 20fdc5fb29c67cf3bc9b61ec1a8b1052
+      size: 430503
+    - path: reports/pancreas_model2/fig2_part1_plot.pdf.png
+      md5: c062218461606789a839452bbe7e68c1
+      size: 613805
+    - path: reports/pancreas_model2/fig2_part2_plot.pdf
+      md5: 3b71d03af4f631b90d80ad8e6364b530
+      size: 1278735
+    - path: reports/pancreas_model2/fig2_part2_plot.pdf.png
+      md5: d69defed892e81e5a76608dbe698f125
+      size: 700919
     - path: reports/pancreas_model2/rainbow.pdf
-      md5: 37ad4e37351fefc37dda6bf188d09345
-      size: 674523
+      md5: 3b71896805ba8896876345c463f73dc3
+      size: 672215
     - path: reports/pancreas_model2/rainbow.pdf.png
-      md5: a053e9fbf0755a4fa529e92e3ef03f45
-      size: 1592710
+      md5: ab5741e9a3ab6ece205db1bd9f340709
+      size: 1362103
     - path: reports/pancreas_model2/shared_time.pdf
-      md5: 8b9f1cccd939368b959a8496e5e90137
-      size: 284036
+      md5: 168f13508d4241af671865705674821b
+      size: 285448
     - path: reports/pancreas_model2/vector_field.pdf
-      md5: 6197bf7672b3b71dcdb5b85ae6b27b20
-      size: 397645
+      md5: d92a634f33e857a51842d9a823cd265d
+      size: 397382
     - path: reports/pancreas_model2/vector_field.pdf.png
-      md5: 1193ca868b77e7f6a3132aec649cf00c
-      size: 697781
+      md5: f7de40753ea89a455d6c2fdd7d380359
+      size: 689803
     - path: reports/pancreas_model2/volcano.pdf
-      md5: f035498a6b8761d8f05263f0826b88fd
-      size: 20358
+      md5: 36cad9cfc691042bf8bb84a6f157f7b9
+      size: 20843
   summarize@pbmc68k_model2:
     cmd: python summarize.py train_models=[pbmc68k_model2]
     deps:
     - path: models/pbmc68k_model2/pyrovelocity.pkl.zst
-      md5: fe639f3f107789827275fad0dc4c1bd4
-      size: 679019086
+      md5: c4adabfaa2e0ea3baa15776847cc7a93
+      size: 513892944
     - path: models/pbmc68k_model2/trained.h5ad
-      md5: 0bcb9e487d242deabd6dec70bf31a254
-      size: 2150870473
+      md5: 1416f0cc98346453f87d197c61887aa2
+      size: 1112777602
     - path: summarize.py
-      md5: e4e211ecb99b329107ad2f32de3df270
-      size: 16796
+      md5: 016615f3ecddbd066fdbd1a127043045
+      size: 16934
     params:
       config.yaml:
         base:
@@ -1889,41 +1998,50 @@ stages:
           fig2_part2_plot: reports/pbmc68k_model2/fig2_part2_plot.pdf
     outs:
     - path: data/processed/pbmc68k_model2_dataframe.pkl.zst
-      md5: dc17c1ef835c7500d0b694422481fbd1
-      size: 38352654
+      md5: 5dfddd2f9d6f93d34569eeaa4982eb99
+      size: 9123664
     - path: reports/pbmc68k_model2/fig2_part1_plot.pdf
-      md5: 371843f8a2ac6984e1d958031c718274
-      size: 4363749
+      md5: 154a2fcc15370664fb77bbfb4df47a2a
+      size: 4365798
+    - path: reports/pbmc68k_model2/fig2_part1_plot.pdf.png
+      md5: 0339a646c73719ae8bedea86d461214d
+      size: 823373
+    - path: reports/pbmc68k_model2/fig2_part2_plot.pdf
+      md5: 3c8bb251215256d18dae99d4b04a380f
+      size: 21561778
+    - path: reports/pbmc68k_model2/fig2_part2_plot.pdf.png
+      md5: 1fb8a4f0bce4d8b03220a47840baaecf
+      size: 843937
     - path: reports/pbmc68k_model2/rainbow.pdf
-      md5: 995950f57697d801bfacb83c61f9aff6
-      size: 11383839
+      md5: e6a7e5d89b0cb7649ede44429cdd8e37
+      size: 11373038
     - path: reports/pbmc68k_model2/rainbow.pdf.png
-      md5: f21a38a0d5f4aafc64a19666e0c6042b
-      size: 2414280
+      md5: 6652d8c942b3f7d20add5f99d3e183bf
+      size: 1926520
     - path: reports/pbmc68k_model2/shared_time.pdf
-      md5: 3eb7e5dc365e548535740603409ee1f6
-      size: 203078
+      md5: 2f60e4920fbc2e54e8f896be5843f013
+      size: 222681
     - path: reports/pbmc68k_model2/vector_field.pdf
-      md5: 4554c14da6cb9c1b8409c6e152f9301f
-      size: 1033617
+      md5: fa1ee1f8e84734fdd32bfec2e572d777
+      size: 1033583
     - path: reports/pbmc68k_model2/vector_field.pdf.png
-      md5: 5e64eb0e91563c943a1aebcfe854b24b
-      size: 1193268
+      md5: 8036dede27153608a625c6f47a924339
+      size: 1198770
     - path: reports/pbmc68k_model2/volcano.pdf
-      md5: 331a03c88a3359314eccd62258ac2bb0
-      size: 20454
+      md5: 638d95b1429a3115e82d1f9c36890fa0
+      size: 18726
   summarize@pons_model2:
     cmd: python summarize.py train_models=[pons_model2]
     deps:
     - path: models/pons_model2/pyrovelocity.pkl.zst
-      md5: 6102fb752559082e3ebd2e33013a0f5f
-      size: 175510242
+      md5: e19265b3df8c7204f1711ba5139e0247
+      size: 107391424
     - path: models/pons_model2/trained.h5ad
-      md5: 7bf76d4663cda7587c3f5e1e279b8ce6
-      size: 859739291
+      md5: 392c542b606b76feeac271c0a687438d
+      size: 288360805
     - path: summarize.py
-      md5: e4e211ecb99b329107ad2f32de3df270
-      size: 16796
+      md5: 016615f3ecddbd066fdbd1a127043045
+      size: 16934
     params:
       config.yaml:
         base:
@@ -1944,41 +2062,50 @@ stages:
           fig2_part2_plot: reports/pons_model2/fig2_part2_plot.pdf
     outs:
     - path: data/processed/pons_model2_dataframe.pkl.zst
-      md5: b17eb7eaadc357d32ae68e3c30ee33f4
-      size: 20173882
+      md5: 936e4a0bbe8912ebf3e3d6e7e6435be1
+      size: 6630182
     - path: reports/pons_model2/fig2_part1_plot.pdf
-      md5: 5c266b415d1eaa178d1362d3f962ff67
-      size: 599026
+      md5: cef6937161e1e62a320227f678ffe687
+      size: 599193
+    - path: reports/pons_model2/fig2_part1_plot.pdf.png
+      md5: 82d190720c157d60ed72c6a6f397c8d9
+      size: 635184
+    - path: reports/pons_model2/fig2_part2_plot.pdf
+      md5: b2a78a29114078f5c7e82ba03dba0a85
+      size: 2127108
+    - path: reports/pons_model2/fig2_part2_plot.pdf.png
+      md5: 31588e79fe18c4c3adc1c1bad66fe877
+      size: 725734
     - path: reports/pons_model2/rainbow.pdf
-      md5: bada8c86ab6012aff613c02d27a68d42
-      size: 1079005
+      md5: 37dcb37cd6b04d11ff27109cb027188c
+      size: 1080869
     - path: reports/pons_model2/rainbow.pdf.png
-      md5: bad7afd11e2404c13ce0d65348de117b
-      size: 960916
+      md5: 105f59a687bbe25efbdac83e6d4e6123
+      size: 1246782
     - path: reports/pons_model2/shared_time.pdf
-      md5: c7ce4496b506eb9b64b982ce715fb8e5
-      size: 314031
+      md5: 910b58fcacb3f6d6163d44b7edce9b82
+      size: 313498
     - path: reports/pons_model2/vector_field.pdf
-      md5: 1ec0e8558c2d4d51776261efdc383a7e
-      size: 377130
+      md5: a76c79e8370770338f0379f6ca6eb706
+      size: 377068
     - path: reports/pons_model2/vector_field.pdf.png
-      md5: aceffedc2c04baf315ca0f78b5afe097
-      size: 799128
+      md5: 8666e40b79cfc459102c55f42fe2ac69
+      size: 799436
     - path: reports/pons_model2/volcano.pdf
-      md5: 0951c3aa3958d311e5c7ee368f67ca7d
-      size: 21581
+      md5: 31209fbeb39fae97736f4f7801c56205
+      size: 19859
   summarize@pbmc10k_model2:
     cmd: python summarize.py train_models=[pbmc10k_model2]
     deps:
     - path: models/pbmc10k_model2/pyrovelocity.pkl.zst
-      md5: 6c429cfd714bd8fa25b30d57c653e810
-      size: 330050183
+      md5: 6fb18ff8e809e2151b9a36ddce4fd7f3
+      size: 266838725
     - path: models/pbmc10k_model2/trained.h5ad
-      md5: a4ea4b235e8f35c2db4e711ca0f9243b
-      size: 1529235151
+      md5: 211422bd3bfcdb07afb0973a3464bb7c
+      size: 1021599729
     - path: summarize.py
-      md5: e4e211ecb99b329107ad2f32de3df270
-      size: 16796
+      md5: 016615f3ecddbd066fdbd1a127043045
+      size: 16934
     params:
       config.yaml:
         base:
@@ -1999,41 +2126,50 @@ stages:
           fig2_part2_plot: reports/pbmc10k_model2/fig2_part2_plot.pdf
     outs:
     - path: data/processed/pbmc10k_model2_dataframe.pkl.zst
-      md5: 6464f86c3b2ed5661778d78c7f11c994
-      size: 37856415
+      md5: 624cf20c5bb3f324ded7c0365daefb9b
+      size: 26163662
     - path: reports/pbmc10k_model2/fig2_part1_plot.pdf
-      md5: bd0732d08373c8bebcc6eeb101adfae2
-      size: 989882
+      md5: 583653c0f98fedd310dd216d5444a682
+      size: 990624
+    - path: reports/pbmc10k_model2/fig2_part1_plot.pdf.png
+      md5: f7cf7b31ab9c65168e57a22645966738
+      size: 751435
+    - path: reports/pbmc10k_model2/fig2_part2_plot.pdf
+      md5: d65191c1d7696bfd7a67142de6606f94
+      size: 3789734
+    - path: reports/pbmc10k_model2/fig2_part2_plot.pdf.png
+      md5: 2058e178d9a599e7886148a0acdb60a9
+      size: 885898
     - path: reports/pbmc10k_model2/rainbow.pdf
-      md5: eb59da049b26d30ff5eee3ff09c75f74
-      size: 2046931
+      md5: 58351f9d7597df5df73d0c9218db89ed
+      size: 2046640
     - path: reports/pbmc10k_model2/rainbow.pdf.png
-      md5: df3527785c8544b3ef41ef65bb4a62b5
-      size: 1587744
+      md5: 1081fe19599b0371293b0013991c938c
+      size: 1588518
     - path: reports/pbmc10k_model2/shared_time.pdf
-      md5: 8d5ff17f1225612cfb31b6ccff6189d2
-      size: 228899
+      md5: 15bc08c673544ef0a9f746b15b80d047
+      size: 218916
     - path: reports/pbmc10k_model2/vector_field.pdf
-      md5: 4bd954978d553f72885f2d46ec5ba87f
-      size: 504856
+      md5: aac6a96354046cf31dbfad0c9d770290
+      size: 504890
     - path: reports/pbmc10k_model2/vector_field.pdf.png
-      md5: 56ececa7f5b2f4b826c6bf7628660f7f
-      size: 985242
+      md5: 19be108c836b8df13f8afd41c07c5ac0
+      size: 985483
     - path: reports/pbmc10k_model2/volcano.pdf
-      md5: ae7b200e05622639230732b07345afe9
-      size: 21246
+      md5: 2aaf4aac47133bc1f958085240ff6445
+      size: 21852
   summarize@larry_tips_model2:
     cmd: python summarize.py train_models=[larry_tips_model2]
     deps:
     - path: models/larry_tips_model2/pyrovelocity.pkl.zst
-      md5: d490daa40e5ed835791ab8273c006ad2
-      size: 515004641
+      md5: 0046be61af73fbe971b8f3b7a0a31a17
+      size: 328390612
     - path: models/larry_tips_model2/trained.h5ad
-      md5: 661e065a6bb1e06f957531509856b259
-      size: 2378233322
+      md5: 3164c029d7f40264d7b01e5541b00e12
+      size: 859395324
     - path: summarize.py
-      md5: e4e211ecb99b329107ad2f32de3df270
-      size: 16796
+      md5: 016615f3ecddbd066fdbd1a127043045
+      size: 16934
     params:
       config.yaml:
         base:
@@ -2054,29 +2190,38 @@ stages:
           fig2_part2_plot: reports/larry_tips_model2/fig2_part2_plot.pdf
     outs:
     - path: data/processed/larry_tips_model2_dataframe.pkl.zst
-      md5: 4baed90a859b857667bf246d3d9ec24c
-      size: 50020146
+      md5: 0c8bf3e7eb8d948d778fc3c84a65399a
+      size: 16799831
     - path: reports/larry_tips_model2/fig2_part1_plot.pdf
-      md5: e0f2e70cbd2e2facbc7baffc0f0cf2e6
-      size: 1307539
+      md5: ff6068228bebdc54e7c9000af712dc0c
+      size: 1303846
+    - path: reports/larry_tips_model2/fig2_part1_plot.pdf.png
+      md5: e649ea7ec41040771ded04df96ef5926
+      size: 481708
+    - path: reports/larry_tips_model2/fig2_part2_plot.pdf
+      md5: 0ca827837283c0755aff28e530acd677
+      size: 5819293
+    - path: reports/larry_tips_model2/fig2_part2_plot.pdf.png
+      md5: 2ffc852989b75d650813d07b9a17e313
+      size: 609562
     - path: reports/larry_tips_model2/rainbow.pdf
-      md5: 9259e71eca050e12b121854be269bde7
-      size: 3100598
+      md5: 5200c24667e57f66c0fd87acafd16025
+      size: 3109049
     - path: reports/larry_tips_model2/rainbow.pdf.png
-      md5: 209553cb237e0e8c1cdda5cbe6014b85
-      size: 1456954
+      md5: e13fc0f67012ee078a676c3ba550d4f3
+      size: 1448570
     - path: reports/larry_tips_model2/shared_time.pdf
-      md5: 6d0bc20a1a087afad29a2876c1725ad4
-      size: 251071
+      md5: 85bd175f996f608d435e035c35a6d978
+      size: 258534
     - path: reports/larry_tips_model2/vector_field.pdf
-      md5: 3319721d773a4550e1b2a969fc4ef3e6
-      size: 224066
+      md5: 3bbb542e8eb009c0a5a9657d85a724ca
+      size: 241606
     - path: reports/larry_tips_model2/vector_field.pdf.png
-      md5: 4e2d17fb7791ef86826eba15bc3ac817
-      size: 489108
+      md5: 23301340b2cd4ec1579dbeb026166102
+      size: 490270
     - path: reports/larry_tips_model2/volcano.pdf
-      md5: 0d597512b40e25b9faf5550677f0170d
-      size: 21200
+      md5: fe688a312aa9c82375586b33ee339982
+      size: 20891
   figureS3:
     cmd: python figS3/figure.py
     deps:
@@ -2084,17 +2229,17 @@ stages:
       md5: d5cf643f22a24319523a5078a3648654
       size: 12882
     - path: models/pancreas_model2/pyrovelocity.pkl.zst
-      md5: 143f044ba49870ba395c1974ea702d27
-      size: 105520126
+      md5: e589bc2a15f2db756df3ae9c2e1db3ed
+      size: 65630080
     - path: models/pancreas_model2/trained.h5ad
-      md5: d6871cdb5403d14454d842e6e8bc7969
-      size: 492522608
+      md5: db1f418ac3a13d7f0ec40adfbec0cbcf
+      size: 169776624
     - path: models/pbmc68k_model2/pyrovelocity.pkl.zst
-      md5: fe639f3f107789827275fad0dc4c1bd4
-      size: 679019086
+      md5: c4adabfaa2e0ea3baa15776847cc7a93
+      size: 513892944
     - path: models/pbmc68k_model2/trained.h5ad
-      md5: 0bcb9e487d242deabd6dec70bf31a254
-      size: 2150870473
+      md5: 1416f0cc98346453f87d197c61887aa2
+      size: 1112777602
     params:
       config.yaml:
         reports.figureS3:
@@ -2104,11 +2249,11 @@ stages:
           svg_path: reports/figS3/figS3_raw_gene_selection_model2.svg
     outs:
     - path: reports/figS3/figS3_raw_gene_selection_model2.svg
-      md5: 16d24d0ebd7ad1cd7f1aca2f70877087
-      size: 49283436
+      md5: 9aaf6c1738a98e7745513c2ec8be482e
+      size: 49194925
     - path: reports/figS3/figS3_raw_gene_selection_model2.tif
-      md5: 05030c694f704032fc3f6ff11fe68b9b
-      size: 19732046
+      md5: 380c043d793b7bf90b8983b61aede637
+      size: 19533902
   figureS3_extras:
     cmd: python figS3/figure_extras.py train_models=[pancreas_model2,pbmc10k_model2,pbmc68k_model2,pons_model2,larry_model2,larry_neu_model2,larry_mono_model2,larry_multilineage_model2,larry_tips_model2]
     deps:
@@ -2116,32 +2261,32 @@ stages:
       md5: 3e702755599f83d2c960a897d6e92f9e
       size: 10635
     - path: models/larry_model2/pyrovelocity.pkl.zst
-      md5: 5411628e572ab2952f85001e6fcb8a68
-      size: 1368571204
+      md5: 9e04d6b9595bf1e246c9b7ab107722ac
+      size: 916363882
     - path: models/larry_mono_model2/pyrovelocity.pkl.zst
-      md5: 6fc7960842938b4229da7462b3717d9c
-      size: 29734791
+      md5: 563b2292845f0b9e6efb7be3c1dce28d
+      size: 10659012
     - path: models/larry_multilineage_model2/pyrovelocity.pkl.zst
-      md5: 713c587442cedf0f68ca041bbbb45484
-      size: 66381412
+      md5: c6dce321aa14c9bae803e2503d155171
+      size: 36144922
     - path: models/larry_neu_model2/pyrovelocity.pkl.zst
-      md5: 0e106789eec7ec47e43e24b53a58825a
-      size: 25862188
+      md5: 9bf602e57152397bba9a57a724d978e6
+      size: 9345592
     - path: models/larry_tips_model2/pyrovelocity.pkl.zst
-      md5: d490daa40e5ed835791ab8273c006ad2
-      size: 515004641
+      md5: 0046be61af73fbe971b8f3b7a0a31a17
+      size: 328390612
     - path: models/pancreas_model2/pyrovelocity.pkl.zst
-      md5: 143f044ba49870ba395c1974ea702d27
-      size: 105520126
+      md5: e589bc2a15f2db756df3ae9c2e1db3ed
+      size: 65630080
     - path: models/pbmc10k_model2/pyrovelocity.pkl.zst
-      md5: 6c429cfd714bd8fa25b30d57c653e810
-      size: 330050183
+      md5: 6fb18ff8e809e2151b9a36ddce4fd7f3
+      size: 266838725
     - path: models/pbmc68k_model2/pyrovelocity.pkl.zst
-      md5: fe639f3f107789827275fad0dc4c1bd4
-      size: 679019086
+      md5: c4adabfaa2e0ea3baa15776847cc7a93
+      size: 513892944
     - path: models/pons_model2/pyrovelocity.pkl.zst
-      md5: 6102fb752559082e3ebd2e33013a0f5f
-      size: 175510242
+      md5: e19265b3df8c7204f1711ba5139e0247
+      size: 107391424
     params:
       config.yaml:
         reports.figureS3:
@@ -2151,17 +2296,17 @@ stages:
           svg_path: reports/figS3/figS3_raw_gene_selection_model2.svg
     outs:
     - path: reports/figS3/figureS3_extras_larry_lin.pdf
-      md5: 9428b95eaf04f07a15075149ae523b2e
-      size: 82965
+      md5: 4aa4e379aa8b65528ae98d98a3ea3a71
+      size: 81373
     - path: reports/figS3/figureS3_extras_larry_log.pdf
-      md5: be9564181fe0983d155dafb67576b55f
-      size: 83495
+      md5: 3e56c24554982a60db000eab439ea30d
+      size: 82300
     - path: reports/figS3/figureS3_extras_pbmc_lin.pdf
-      md5: d77bfe458901b715e162cf8a8e4e4f93
-      size: 69086
+      md5: d8d9bcd442ebfe03e53fa86ef71cc313
+      size: 69809
     - path: reports/figS3/figureS3_extras_pbmc_log.pdf
-      md5: 20fc28afe0fb9bac07120b26cc4af896
-      size: 71273
+      md5: a3833625c03e8376b5beab2d38a65ebb
+      size: 71616
   data_download@larry_cospar:
     cmd: python data_download.py process_data=[larry_cospar]
     deps:
@@ -2179,8 +2324,10 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/larry_cospar.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_cospar_processed.h5ad
+            thresh_histogram_path: data/processed/larry_cospar_thresh_histogram.pdf
     outs:
     - path: data/external/larry_cospar.h5ad
       md5: a37647045e7265b4f63958e4fcdf5a44
@@ -2192,8 +2339,8 @@ stages:
       md5: a37647045e7265b4f63958e4fcdf5a44
       size: 1856953062
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_cospar:
@@ -2205,12 +2352,20 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/larry_cospar.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_cospar_processed.h5ad
+            thresh_histogram_path: data/processed/larry_cospar_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_cospar_processed.h5ad
-      md5: 9b5849e81f2d2bb9f0cd7f5c94281a2c
-      size: 2844291912
+      md5: 4e5a8af46dc090bcebb2b4f7d4c8087e
+      size: 2965439664
+    - path: data/processed/larry_cospar_thresh_histogram.pdf
+      md5: bf3cc2b4ecd0035ae56622ffa9638a38
+      size: 41194
+    - path: data/processed/larry_cospar_thresh_histogram.pdf.png
+      md5: fa31fae5d1c63703e1fcf2e4623b7d07
+      size: 127625
   data_download@larry_dynamical:
     cmd: python data_download.py process_data=[larry_dynamical]
     deps:
@@ -2228,8 +2383,10 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/larry_dynamical.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_dynamical_processed.h5ad
+            thresh_histogram_path: data/processed/larry_dynamical_thresh_histogram.pdf
     outs:
     - path: data/external/larry_dynamical.h5ad
       md5: 8e436da12c7d04f049d822e88ef75680
@@ -2251,8 +2408,10 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/larry_cytotrace.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_cytotrace_processed.h5ad
+            thresh_histogram_path: data/processed/larry_cytotrace_thresh_histogram.pdf
     outs:
     - path: data/external/larry_cytotrace.h5ad
       md5: 5149fda86944ac19f0c9ab31461ec22f
@@ -2264,8 +2423,8 @@ stages:
       md5: 5149fda86944ac19f0c9ab31461ec22f
       size: 1526733926
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_cytotrace:
@@ -2277,12 +2436,20 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/larry_cytotrace.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_cytotrace_processed.h5ad
+            thresh_histogram_path: data/processed/larry_cytotrace_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_cytotrace_processed.h5ad
-      md5: 4d902b4d69a4e078f5ebef923c25dd2b
-      size: 1526746438
+      md5: 5f7f6440a0f2e4bed3007c2e02625e27
+      size: 1967302734
+    - path: data/processed/larry_cytotrace_thresh_histogram.pdf
+      md5: e52ee783625e9a46cf8afb23ab63cffc
+      size: 69411
+    - path: data/processed/larry_cytotrace_thresh_histogram.pdf.png
+      md5: ab1e8f22815ae9ce01aafffda98364d2
+      size: 115786
   preprocess@larry_dynamical:
     cmd: python preprocess.py process_data=[larry_dynamical]
     deps:
@@ -2290,8 +2457,8 @@ stages:
       md5: 8e436da12c7d04f049d822e88ef75680
       size: 5269119872
     - path: preprocess.py
-      md5: 1cda99421bae4e5676096a0aaa0907a7
-      size: 2607
+      md5: ccbe8f3aa9ca398e232c69b48a041c4d
+      size: 2744
     params:
       config.yaml:
         data_sets.larry_dynamical:
@@ -2303,24 +2470,32 @@ stages:
           url: https://storage.googleapis.com/pyrovelocity/data/larry_dynamical.h5ad
           derived:
             process_method: load_data
-            process_args: {}
+            process_args:
+              count_thres: 4
             rel_path: data/processed/larry_dynamical_processed.h5ad
+            thresh_histogram_path: data/processed/larry_dynamical_thresh_histogram.pdf
     outs:
     - path: data/processed/larry_dynamical_processed.h5ad
-      md5: 1457723ff99dbd7b9e9188d4270f21f4
-      size: 5269133104
+      md5: d9671e0b9076f3f9f0697494a80aa67e
+      size: 5390277128
+    - path: data/processed/larry_dynamical_thresh_histogram.pdf
+      md5: 679951ec6c4549f2ab94fa5d24fe1f89
+      size: 41201
+    - path: data/processed/larry_dynamical_thresh_histogram.pdf.png
+      md5: a2fcc5a3c6d43f5740af9191a28ddcd0
+      size: 128311
   summarize@larry_model2:
     cmd: python summarize.py train_models=[larry_model2]
     deps:
     - path: models/larry_model2/pyrovelocity.pkl.zst
-      md5: 5411628e572ab2952f85001e6fcb8a68
-      size: 1368571204
+      md5: 9e04d6b9595bf1e246c9b7ab107722ac
+      size: 916363882
     - path: models/larry_model2/trained.h5ad
-      md5: 653fe0f530036ae62155888cb2b16289
-      size: 6327385438
+      md5: 3c3c4f5e86c01c2699bcecd3a71bdb24
+      size: 2684816079
     - path: summarize.py
-      md5: e4e211ecb99b329107ad2f32de3df270
-      size: 16796
+      md5: 016615f3ecddbd066fdbd1a127043045
+      size: 16934
     params:
       config.yaml:
         base:
@@ -2341,26 +2516,35 @@ stages:
           fig2_part2_plot: reports/larry_model2/fig2_part2_plot.pdf
     outs:
     - path: data/processed/larry_model2_dataframe.pkl.zst
-      md5: 91a40d3791dce553689481b4d6c3ad2d
-      size: 130451734
+      md5: 41ff5e0daccbf80a589152e6d97c7469
+      size: 51777436
     - path: reports/larry_model2/fig2_part1_plot.pdf
-      md5: 646f7da4bb969221da07a004480933cb
-      size: 3268645
+      md5: 014bc7d124eb255fdf6833a6b9e878f9
+      size: 3269196
+    - path: reports/larry_model2/fig2_part1_plot.pdf.png
+      md5: c193fac8e93e1f0ab0bb4fcd9af8adef
+      size: 679978
+    - path: reports/larry_model2/fig2_part2_plot.pdf
+      md5: 48513f2170faa143fa2b8a30e74ccdf3
+      size: 14972124
+    - path: reports/larry_model2/fig2_part2_plot.pdf.png
+      md5: 9547592e692e99f81d26d23ed4debcbd
+      size: 896707
     - path: reports/larry_model2/rainbow.pdf
-      md5: 5e97349ecf60640500883f3aac4ec2cc
-      size: 8104552
+      md5: 38cdb1978704f5e9b994cb083398a726
+      size: 7891400
     - path: reports/larry_model2/rainbow.pdf.png
-      md5: 4157ef480c4054a2b95b2a93bb85f664
-      size: 1731582
+      md5: cf027f5b83aef1e8f3009709d6566b32
+      size: 1881011
     - path: reports/larry_model2/shared_time.pdf
-      md5: bca5484f201fb805e7d96f5c9519b607
-      size: 226180
+      md5: 20572a0850df75768a79d9f6a9ba0ab5
+      size: 196283
     - path: reports/larry_model2/vector_field.pdf
-      md5: d53904eae1b193db9daf5ab8f3d0cd93
-      size: 390566
+      md5: bb3cf1d6be15c7cdb78a8e33b60bed9c
+      size: 390492
     - path: reports/larry_model2/vector_field.pdf.png
-      md5: f7224806268bc88ed091713f44ea7a3b
-      size: 752489
+      md5: 9a23e89a98460cd3a177739f37d6cf95
+      size: 739738
     - path: reports/larry_model2/volcano.pdf
-      md5: ee031a8acd0390783f1bba9a72c317e3
-      size: 21100
+      md5: 140b9f95b3a4505cdac1e59998f5dd2b
+      size: 21034

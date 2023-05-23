@@ -52,8 +52,10 @@ data_sets:
     url: https://storage.googleapis.com/pyrovelocity/data/simulated_medium.h5ad
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/simulated_medium_processed.h5ad
+      thresh_histogram_path: data/processed/simulated_medium_thresh_histogram.pdf
   pons:
     source: velocyto
     data_file: oligo_lite.h5ad
@@ -63,8 +65,10 @@ data_sets:
     url: https://storage.googleapis.com/pyrovelocity/data/oligo_lite.h5ad
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/pons_processed.h5ad
+      thresh_histogram_path: data/processed/pons_thresh_histogram.pdf
   pancreas:
     source: scvelo
     data_file: endocrinogenesis_day15.h5ad
@@ -76,7 +80,9 @@ data_sets:
       process_method: load_data
       process_args:
         process_cytotrace: true
+        count_thres: 4
       rel_path: data/processed/pancreas_processed.h5ad
+      thresh_histogram_path: data/processed/pancreas_thresh_histogram.pdf
   pbmc68k:
     source: scvelo
     data_file: pbmc68k.h5ad
@@ -86,8 +92,10 @@ data_sets:
     url: https://ndownloader.figshare.com/files/27686886
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/pbmc68k_processed.h5ad
+      thresh_histogram_path: data/processed/pbmc68k_thresh_histogram.pdf
   larry:
     source: pyrovelocity
     data_file: larry.h5ad
@@ -97,8 +105,10 @@ data_sets:
     url: https://ndownloader.figshare.com/files/37028569
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_processed.h5ad
+      thresh_histogram_path: data/processed/larry_thresh_histogram.pdf
   larry_cospar:
     source: pyrovelocity
     data_file: larry_cospar.h5ad
@@ -108,8 +118,10 @@ data_sets:
     url: https://storage.googleapis.com/pyrovelocity/data/larry_cospar.h5ad
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_cospar_processed.h5ad
+      thresh_histogram_path: data/processed/larry_cospar_thresh_histogram.pdf
   larry_cytotrace:
     source: pyrovelocity
     data_file: larry_cytotrace.h5ad
@@ -119,8 +131,10 @@ data_sets:
     url: https://storage.googleapis.com/pyrovelocity/data/larry_cytotrace.h5ad
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_cytotrace_processed.h5ad
+      thresh_histogram_path: data/processed/larry_cytotrace_thresh_histogram.pdf
   larry_dynamical:
     source: pyrovelocity
     data_file: larry_dynamical.h5ad
@@ -130,8 +144,10 @@ data_sets:
     url: https://storage.googleapis.com/pyrovelocity/data/larry_dynamical.h5ad
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_dynamical_processed.h5ad
+      thresh_histogram_path: data/processed/larry_dynamical_thresh_histogram.pdf
   larry_tips:
     source: pyrovelocity
     data_file: larry_tips.h5ad
@@ -141,8 +157,10 @@ data_sets:
     url: https://ndownloader.figshare.com/files/37028569
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_tips_processed.h5ad
+      thresh_histogram_path: data/processed/larry_tips_thresh_histogram.pdf
   larry_mono:
     source: pyrovelocity
     data_file: larry_mono.h5ad
@@ -152,8 +170,10 @@ data_sets:
     url: https://ndownloader.figshare.com/files/37028569
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_mono_processed.h5ad
+      thresh_histogram_path: data/processed/larry_mono_thresh_histogram.pdf
   larry_neu:
     source: pyrovelocity
     data_file: larry_neu.h5ad
@@ -163,8 +183,10 @@ data_sets:
     url: https://ndownloader.figshare.com/files/37028575
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_neu_processed.h5ad
+      thresh_histogram_path: data/processed/larry_neu_thresh_histogram.pdf
   larry_multilineage:
     source: pyrovelocity
     data_file: larry_multilineage.h5ad
@@ -174,8 +196,10 @@ data_sets:
     url: https://ndownloader.figshare.com/files/37028569
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/larry_multilineage_processed.h5ad
+      thresh_histogram_path: data/processed/larry_multilineage_thresh_histogram.pdf
   pbmc10k:
     source: pyrovelocity
     data_file: pbmc10k.h5ad
@@ -185,8 +209,10 @@ data_sets:
     url: https://storage.googleapis.com/pyrovelocity/data/pbmc10k.h5ad
     derived:
       process_method: load_data
-      process_args: {}
+      process_args:
+        count_thres: 4
       rel_path: data/processed/pbmc10k_processed.h5ad
+      thresh_histogram_path: data/processed/pbmc10k_thresh_histogram.pdf
 model_training:
   simulate_model2:
     path: models/simulate_medium_model2

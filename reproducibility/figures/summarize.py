@@ -250,13 +250,14 @@ def summarize_fig2_part1(
         cmap="inferno",
         cmax=None,
     )
-    fig.savefig(
-        plot_name,
-        facecolor=fig.get_facecolor(),
-        bbox_inches="tight",
-        edgecolor="none",
-        dpi=300,
-    )
+    for ext in ["", ".png"]:
+        fig.savefig(
+            f"{plot_name}{ext}",
+            facecolor=fig.get_facecolor(),
+            bbox_inches="tight",
+            edgecolor="none",
+            dpi=300,
+        )
 
 
 def summarize_fig2_part2(
@@ -288,13 +289,14 @@ def summarize_fig2_part2(
             cell_state=cell_state,
             num_genes=4,
         )
-        fig.savefig(
-            plot_name,
-            facecolor=fig.get_facecolor(),
-            bbox_inches="tight",
-            edgecolor="none",
-            dpi=300,
-        )
+        for ext in ["", ".png"]:
+            fig.savefig(
+                f"{plot_name}{ext}",
+                facecolor=fig.get_facecolor(),
+                bbox_inches="tight",
+                edgecolor="none",
+                dpi=300,
+            )
 
 
 def plots(conf: DictConfig, logger: Logger) -> None:

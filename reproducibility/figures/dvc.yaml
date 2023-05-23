@@ -27,6 +27,8 @@ stages:
             - data_sets.${key}
       outs:
         - ${item.derived.rel_path}
+        - ${item.derived.thresh_histogram_path}
+        - ${item.derived.thresh_histogram_path}.png
 
   train:
     foreach: ${model_training}
@@ -89,6 +91,9 @@ stages:
         - ${item.vector_field_plot}.png
         - ${item.shared_time_plot}
         - ${item.fig2_part1_plot}
+        - ${item.fig2_part1_plot}.png
+        - ${item.fig2_part2_plot}
+        - ${item.fig2_part2_plot}.png
 
   # figureS3:
   #   cmd: python figS3/figure.py

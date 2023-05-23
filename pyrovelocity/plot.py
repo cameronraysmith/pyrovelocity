@@ -694,7 +694,6 @@ def vector_field_uncertainty(
             posterior_samples["beta"] * posterior_samples["ut"] / scale
             - posterior_samples["gamma"] * posterior_samples["st"]
         )
-
     if denoised:
         projection = [
             ("PCA", sklearn.decomposition.PCA(random_state=99, n_components=50)),
@@ -713,13 +712,13 @@ def vector_field_uncertainty(
     ##scv.pp.neighbors(adata, use_rep=basis)
 
     assert len(posterior_samples["st"].shape) == 3
-    scv.pp.pca(adata)
     adata.var["velocity_genes"] = True
     for sample in range(posterior_samples["st"].shape[0]):
         adata.layers["spliced_pyro"] = posterior_samples["st"][sample]
         adata.layers["velocity_pyro"] = velocity_samples[sample]
 
         if basis == "pca":
+            scv.pp.pca(adata)
             scv.tl.velocity_embedding(
                 adata, vkey="velocity_pyro", basis="pca", direct_pca_projection=True
             )

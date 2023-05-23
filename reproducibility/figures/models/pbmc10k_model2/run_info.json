@@ -1,12 +1,12 @@
 {
-    "artifact_uri": "file:///home/jupyter/pyrovelocity/reproducibility/figures/mlruns/0/51b6a3ca005f4551ba9a24749ad796ff/artifacts",
-    "end_time": 1684485834405,
+    "artifact_uri": "mlflow-artifacts:/1a741690552b410eb9c7ba642cf21e2d/c9c910d1c5f5488f8d15b68c85ec0677/artifacts",
+    "end_time": 1684633199119,
     "experiment_id": "0",
     "lifecycle_stage": "active",
-    "run_id": "51b6a3ca005f4551ba9a24749ad796ff",
-    "run_name": "pbmc10k_model2-51b6a3c",
-    "run_uuid": "51b6a3ca005f4551ba9a24749ad796ff",
-    "start_time": 1684484252214,
+    "run_id": "c9c910d1c5f5488f8d15b68c85ec0677",
+    "run_name": "pbmc10k_model2-c9c910d",
+    "run_uuid": "c9c910d1c5f5488f8d15b68c85ec0677",
+    "start_time": 1684632146225,
     "status": "FINISHED",
-    "user_id": "jupyter"
+    "user_id": "root"
 }
