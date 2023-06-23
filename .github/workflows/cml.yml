@@ -99,14 +99,14 @@ jobs:
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Setup tmate debug session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ inputs.model_debug_enabled }}
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install -E dev -E plotting --no-interaction --no-root
       - name: Install project
         run: poetry install -E dev -E plotting --no-interaction
-      - name: Setup tmate debug session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ inputs.model_debug_enabled }}
       - name: CML setup
         run: cml ci
       - name: Setup rclone
