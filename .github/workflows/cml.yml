@@ -64,6 +64,7 @@ jobs:
               --reuse-idle \
               --cloud=gcp \
               --cloud-type=n1-highmem-96+nvidia-tesla-t4*4 \
+              --cloud-gpu=tesla \
               --cloud-hdd-size=500 \
               --cloud-region="$zone" \
               --cloud-permission-set="${GCP_SERVICE_ACCOUNT},scopes=storage-rw" \
