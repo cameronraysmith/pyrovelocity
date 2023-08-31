@@ -1,0 +1,12 @@
+{
+    "artifact_uri": "mlflow-artifacts:/1a741690552b410eb9c7ba642cf21e2d/3a48c7bd96a9486eb3f15d33f55ee705/artifacts",
+    "end_time": 1693487722076,
+    "experiment_id": "0",
+    "lifecycle_stage": "active",
+    "run_id": "3a48c7bd96a9486eb3f15d33f55ee705",
+    "run_name": "larry_multilineage_model1-3a48c7b",
+    "run_uuid": "3a48c7bd96a9486eb3f15d33f55ee705",
+    "start_time": 1693487636016,
+    "status": "FINISHED",
+    "user_id": "root"
+}

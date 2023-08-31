@@ -1,0 +1,12 @@
+{
+    "artifact_uri": "mlflow-artifacts:/1a741690552b410eb9c7ba642cf21e2d/0df5af16f5614ce78f0a1b6abd2696eb/artifacts",
+    "end_time": 1693487306869,
+    "experiment_id": "0",
+    "lifecycle_stage": "active",
+    "run_id": "0df5af16f5614ce78f0a1b6abd2696eb",
+    "run_name": "larry_model1-0df5af1",
+    "run_uuid": "0df5af16f5614ce78f0a1b6abd2696eb",
+    "start_time": 1693485524855,
+    "status": "FINISHED",
+    "user_id": "root"
+}

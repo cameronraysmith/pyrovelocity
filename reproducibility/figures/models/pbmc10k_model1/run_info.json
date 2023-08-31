@@ -1,0 +1,12 @@
+{
+    "artifact_uri": "mlflow-artifacts:/1a741690552b410eb9c7ba642cf21e2d/cd997441d389488bad96de0e2278530f/artifacts",
+    "end_time": 1693488953865,
+    "experiment_id": "0",
+    "lifecycle_stage": "active",
+    "run_id": "cd997441d389488bad96de0e2278530f",
+    "run_name": "pbmc10k_model1-cd99744",
+    "run_uuid": "cd997441d389488bad96de0e2278530f",
+    "start_time": 1693488411604,
+    "status": "FINISHED",
+    "user_id": "root"
+}

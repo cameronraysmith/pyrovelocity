@@ -1,0 +1,12 @@
+{
+    "artifact_uri": "mlflow-artifacts:/1a741690552b410eb9c7ba642cf21e2d/abc4fff77a6a45a09f413389cb7606b3/artifacts",
+    "end_time": 1693488709318,
+    "experiment_id": "0",
+    "lifecycle_stage": "active",
+    "run_id": "abc4fff77a6a45a09f413389cb7606b3",
+    "run_name": "bonemarrow_model1-abc4fff",
+    "run_uuid": "abc4fff77a6a45a09f413389cb7606b3",
+    "start_time": 1693488411600,
+    "status": "FINISHED",
+    "user_id": "root"
+}
