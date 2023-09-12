@@ -1,11 +1,8 @@
 {
-  "name": "pyrovelocity",
+  "name": "pyrovelocity-dev",
   "build": {
-    "dockerfile": "../dockerfiles/Dockerfile.conda.cpu",
+    "dockerfile": "../dockerfiles/Dockerfile.conda",
     "context": ".."
-  },
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
   "customizations": {
     "vscode": {
