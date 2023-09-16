@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyrovelocity
+  namespace: pyrovelocity
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: pyrovelocity
+  template:
+    metadata:
+      labels:
+        app: pyrovelocity
+    spec:
+      containers:
+      - name: dev
+        image: ghcr.io/pinellolab/pyrovelocitygpu
+        command: ["/bin/sh", "-c", "sleep infinity"]
+        resources:
+          limits:
+            cpu: "30"
+            memory: "96Gi"
+            nvidia.com/gpu: "1"
+        volumeMounts:
+        - name: pyrovelocity
+          mountPath: /workspace
+        
+      nodeSelector: 
+        gpu-type: nvidia-tesla-t4
+  
+      volumes:
+      - name: pyrovelocity
+        persistentVolumeClaim:
+          claimName: pyrovelocity-claim

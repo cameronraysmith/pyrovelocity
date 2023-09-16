@@ -1,0 +1,16 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+manifests:
+  rawYaml: [k8s/namespace.yaml, k8s/pvc.yaml, k8s/deployment.yaml]
+deploy:
+  kubectl:
+    defaultNamespace: pyrovelocity
+build:
+  artifacts:
+  - image: ghcr.io/pinellolab/pyrovelocitygpu
+    docker:
+      dockerfile: dockerfiles/Dockerfile.conda
+profiles:
+  - name: dev
+    deploy:
+      statusCheckDeadlineSeconds: 960

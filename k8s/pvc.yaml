@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pyrovelocity-claim 
+  namespace: pyrovelocity
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 400Gi
+  storageClassName: standard-rwo
+  volumeMode: Filesystem
+  # dataSource:
+  #   kind: VolumeSnapshot
+  #   name: pyrovelocity-snapshot # optional snapshot to restore
+  # volumeName: pyrovelocity-volume # optional static volume name
