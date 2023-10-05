@@ -25,7 +25,7 @@ Changelog = "https://github.com/pinellolab/pyrovelocity/releases"
 # required
 adjusttext = "~0.7.3"
 anndata = "0.8.0"
-astropy = "5.2.2"
+astropy = "5.3.4"
 click = ">=8.0.1"
 colorlog = "^6.7.0"
 cospar = { version = "0.1.9", source = "pypi" }
