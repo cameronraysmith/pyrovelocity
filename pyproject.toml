@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyrovelocity"
-version = "0.1.3"
+version = "0.1.2"
 description = "A multivariate RNA Velocity model to estimate future cell states with uncertainty using probabilistic modeling with pyro."
 authors = ["Qian Qin <qqin@mgh.harvard.edu>"]
 license = "AGPL-3.0-only"
