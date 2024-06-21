@@ -24,7 +24,7 @@ Changelog = "https://github.com/pinellolab/pyrovelocity/releases"
 [tool.poetry.dependencies]
 # required
 adjusttext = "~0.7.3"
-anndata = "0.8.0"
+anndata = "0.10.8"
 astropy = "5.2.2"
 click = ">=8.0.1"
 colorlog = "^6.7.0"
