@@ -65,7 +65,7 @@ jobs:
         uses: mxschmitt/action-tmate@a283f9441d2d96eb62436dc46d7014f5d357ac22 # ratchet:mxschmitt/action-tmate@v3
         if: ${{ inputs.debug_enabled }}
       - name: Build conda package
-        uses: prefix-dev/rattler-build-action@0056f4275580a8f9194ea4dad19fc8abfdd08805 # ratchet:prefix-dev/rattler-build-action@v0
+        uses: prefix-dev/rattler-build-action@b1147fbfc554014f7b152296deeab0de1789f05d # v0
         with:
           recipe-path: "conda/rattler/recipe.yaml"
           artifact-name: package-${{ matrix.target-platform }}
