@@ -20,10 +20,10 @@ author:
   - name: Pyrovelocity Team
     email: team@pyrovelocity.net
 abstract: |
-  This notebook demonstrates parameter recovery validation for a lattice of PyroVelocity models,
-  progressing from dimensioned models with analytical solutions and observed time to numerical simulation with unobserved time.
-  We focus on models that generate and fit count data while respecting the symmetries identified in dimensionless analysis,
-  synthesizing the approach from BayVel (Sabbioni et al.) with PyroVelocity's legacy implementation.
+  This notebook demonstrates parameter recovery validation for PyroVelocity models using the direct dimensionless approach,
+  progressing from analytical solutions with observed time to numerical simulation with latent time coordinates.
+  We focus on models that naturally avoid identifiability issues while maintaining biological interpretability,
+  using hierarchical priors on characteristic scales and lumped effective capture efficiency.
   We illustrate how to systematically validate that probabilistic models can recover
   known parameters from synthetic data, which is essential before applying models
   to real-world data where true parameter values are unknown.
@@ -62,55 +62,55 @@ Parameter recovery validation is a critical step in validating probabilistic mod
 3. **Evaluating recovery performance**
 4. **Assessing model identifiability**
 
-This notebook demonstrates parameter recovery validation for PyroVelocity models, starting with a dimensioned model that generates and fits count data while respecting the symmetries identified in dimensionless analysis. We synthesize the approach from BayVel (Sabbioni et al. 2025) regarding Poisson product distributions with PyroVelocity's legacy implementation, progressing from analytical solutions with observed time to numerical simulation with latent time. For each model we include a graphical representation of the model's generative process as well as a mathematical description of the prior, observation model, and likelihood.
+This notebook demonstrates parameter recovery validation for PyroVelocity models using the **direct dimensionless approach** that naturally avoids identifiability issues while maintaining biological interpretability. We implement hierarchical priors on characteristic scales and lumped effective capture efficiency, progressing from analytical solutions with observed time to numerical simulation with latent time coordinates. For each model we include a graphical representation of the model's generative process as well as a mathematical description of the prior, observation model, and likelihood.
 
 ## Model Progression
 
-We will validate parameter recovery across a progression of models which prepare for situations where time is not observed and the dynamics are simulated rather than required to have analytical solutions.
+We validate parameter recovery across a progression of **dimensionless models** that naturally avoid identifiability issues while maintaining biological interpretability. Each model builds complexity while preserving the core dimensionless parameterization.
 
-### Analytical Dynamics with Observed Time
+### Dimensionless Analytical Dynamics with Observed Time
 
-This model represents a dimensioned version that generates and fits count data while respecting symmetries:
+This model uses the direct dimensionless approach with analytical solutions:
 
-- **Time coordinates**: Observed (not latent)
-- **Dynamics**: Analytical transcription-splicing-degradation solutions in dimensional units
-- **Parameters**: α (transcription rate, molecules/cell·hr), β (splicing rate, hr⁻¹), γ (degradation rate, hr⁻¹)
-- **Prior**: Log-normal for positive rate parameters
-- **Observation Model**: Poisson counts of actual RNA molecules
-- **Likelihood**: Poisson product distribution (following Jahnke 2007)
-- **Identifiability**: Respects symmetries from dimensionless analysis
+- **Time coordinates**: Observed dimensionless time $t^*_j$
+- **Dynamics**: Analytical dimensionless transcription-splicing-degradation solutions
+- **Parameters**: $\gamma^*_i$ (relative degradation), $U_{0i}$ (characteristic scale), $\lambda_j$ (lumped capture efficiency)
+- **Prior**: Log-normal hierarchical priors for all parameters
+- **Observation Model**: Poisson counts scaled by characteristic scales and capture efficiency
+- **Likelihood**: Poisson product distribution
+- **Identifiability**: Naturally identifiable through dimensionless parameterization
 
-### Analytical Dynamics with Latent Time
+### Dimensionless Analytical Dynamics with Latent Time
 
-This model introduces latent time coordinates:
+This model introduces latent dimensionless time coordinates:
 
-- **Time coordinates**: Latent with priors (similar to PyroVelocity)
-- **Dynamics**: Same analytical solutions
-- **Parameters**: α, β, γ, plus time coordinates
-- **Prior**: Log-normal for positive parameters
-- **Observation Model**: Standard observation model
+- **Time coordinates**: Latent $t^*_j$ with priors
+- **Dynamics**: Same dimensionless analytical solutions
+- **Parameters**: $\gamma^*_i$, $U_{0i}$, $\lambda_j$, plus latent time coordinates
+- **Prior**: Log-normal hierarchical priors
+- **Observation Model**: Same Poisson scaling approach
 - **Likelihood**: Poisson
 
-### Simulated Dynamics with Observed Time
+### Dimensionless Simulated Dynamics with Observed Time
 
-This model replaces the analytical solutions with numerical integration using torchode:
+This model replaces analytical solutions with numerical integration:
 
-- **Time coordinates**: Latent with priors
-- **Dynamics**: Numerical integration with torchode
-- **Parameters**: α, β, γ, plus time coordinates
-- **Prior**: Log-normal for positive parameters
-- **Observation Model**: Standard observation model
+- **Time coordinates**: Observed dimensionless time $t^*_j$
+- **Dynamics**: Numerical integration of dimensionless ODEs using torchode
+- **Parameters**: $\gamma^*_i$, $U_{0i}$, $\lambda_j$
+- **Prior**: Log-normal hierarchical priors
+- **Observation Model**: Same Poisson scaling approach
 - **Likelihood**: Poisson
 
-### Simulated Dynamics with Latent Time
+### Dimensionless Simulated Dynamics with Latent Time
 
-This model replaces the analytical solutions with numerical integration using torchode:
+This model represents the full complexity of the PyroVelocity modular implementation:
 
-- **Time coordinates**: Latent with priors
-- **Dynamics**: Numerical integration with torchode
-- **Parameters**: α, β, γ, plus time coordinates
-- **Prior**: Log-normal for positive parameters
-- **Observation Model**: Standard observation model
+- **Time coordinates**: Latent $t^*_j$ with priors
+- **Dynamics**: Numerical integration of dimensionless ODEs using torchode
+- **Parameters**: $\gamma^*_i$, $U_{0i}$, $\lambda_j$, plus latent time coordinates
+- **Prior**: Log-normal hierarchical priors
+- **Observation Model**: Same Poisson scaling approach
 - **Likelihood**: Poisson
 
 ## Parameter Recovery Validation Framework
@@ -144,22 +144,24 @@ np.random.seed(42)
 print("Setup complete!")
 ```
 
-## Validation Study 1: Analytical dynamics with observed time
+## Validation Study 1: Dimensionless analytical dynamics with observed time
 
-This validation study focuses on a dimensioned model that generates and fits count data while respecting the symmetries identified in the dimensionless analysis. We follow the approach from our [Probabilistic inference in dynamical systems](../inferenceindynamicalsystems/index.qmd) concept guide, providing both a probabilistic graphical model and mathematical description.
+This validation study focuses on the **direct dimensionless approach** that naturally avoids identifiability issues while maintaining biological interpretability. We follow the theoretical foundation from our [Probabilistic inference in dynamical systems](../inferenceindynamicalsystems/index.qmd) concept guide, implementing hierarchical priors on characteristic scales and lumped effective capture efficiency.
 
 ### Model Description
 
-We model the transcription-splicing-degradation system using the dimensioned variables and parameters with their physical units (molecules/cell, hr⁻¹, etc.), but with Poisson observations of the actual RNA counts. This approach synthesizes the dimensionless analysis for identifiability with the count-based observation model used in PyroVelocity.
+We model the transcription-splicing-degradation system using the **direct dimensionless approach** that naturally avoids identifiability issues while maintaining biological interpretability. This approach fits the dimensionless model directly with hierarchical priors on characteristic scales, eliminating the need for post-estimation rescaling procedures.
 
-The model generates count data for unspliced ($u$) and spliced ($s$) RNA molecules per cell, with the dynamics governed by the analytical solutions derived in the dimensionless case but scaled back to dimensional units.
+The model generates count data for unspliced ($u$) and spliced ($s$) RNA molecules per cell, with dynamics governed by the dimensionless analytical solutions and observation model that scales back to dimensional counts through characteristic scales and effective capture efficiency.
 
 ### Probabilistic Graphical Model
+
+The probabilistic graphical model represents the dimensionless transcription-splicing-degradation system with hierarchical priors on characteristic scales and lumped effective capture efficiency. The model directly fits dimensionless parameters while maintaining biological interpretability through characteristic scales.
 
 ```{python}
 #| label: fig-count-model-pgm
 #| code-fold: true
-#| fig-cap: Probabilistic graphical model for the dimensioned transcription-splicing-degradation model with Poisson count observations and observed time coordinates.
+#| fig-cap: Probabilistic graphical model for the dimensionless transcription-splicing-degradation model with hierarchical priors on characteristic scales and lumped effective capture efficiency.
 
 import daft
 import matplotlib.pyplot as plt
@@ -173,30 +175,34 @@ pgm = daft.PGM(line_width=1.2)
 # hyperparameters
 pgm.add_node("mu_init", r"$\mu_{0}$", 0.5, 6, fixed=True)
 pgm.add_node("sigma_init", r"$\sigma_{0}^2$", 1.5, 6, fixed=True)
-pgm.add_node("mu_theta", r"$\mu_{\boldsymbol\theta}$", 2.5, 6, fixed=True)
-pgm.add_node("sigma_theta", r"$\sigma_{\boldsymbol\theta}^2$", 3.5, 6, fixed=True)
-pgm.add_node("mu_sigma", r"$\mu_{\sigma}$", 4.5, 6, fixed=True)
-pgm.add_node("sigma_sigma", r"$\sigma_{\sigma}^2$", 5.5, 6, fixed=True)
+pgm.add_node("mu_gamma", r"$\mu_{\gamma^*}$", 2.5, 6, fixed=True)
+pgm.add_node("sigma_gamma", r"$\sigma_{\gamma^*}^2$", 3.5, 6, fixed=True)
+pgm.add_node("mu_U0", r"$\mu_{U_0}$", 4.5, 6, fixed=True)
+pgm.add_node("sigma_U0", r"$\sigma_{U_0}^2$", 5, 6, fixed=True)
+pgm.add_node("mu_lambda", r"$\mu_{\lambda}$", 5.5, 5, fixed=True)
+pgm.add_node("sigma_lambda", r"$\sigma_{\lambda}^2$", 6, 5, fixed=True)
 
 # latent variables for gene-specific parameters
-pgm.add_node("u_0i", r"$u_{0i}$", 1, 5)
-pgm.add_node("s_0i", r"$s_{0i}$", 2, 5)
-pgm.add_node("theta_i", r"$\boldsymbol\theta_i$", 3, 5)
-pgm.add_node("sigma_ui", r"$\sigma_{ui}$", 4, 5)
-pgm.add_node("sigma_si", r"$\sigma_{si}$", 5, 5)
+pgm.add_node("u_star_0i", r"$u^{\ast}_{0i}$", 1, 5)
+pgm.add_node("s_star_0i", r"$s^{\ast}_{0i}$", 2, 5)
+pgm.add_node("gamma_star_i", r"$\gamma^{\ast}_i$", 3, 5)
+pgm.add_node("U_0i", r"$U_{0i}$", 4.5, 5)
+
+# cell-specific parameters (moved inside cell plate)
+pgm.add_node("lambda_j", r"$\lambda_j$", 5.5, 4)
 
 # latent variables for cell-specific outcomes
 pgm.add_node(
-    "u_ij",
-    r"$u_{ij}$",
+    "u_star_ij",
+    r"$u^{\ast}_{ij}$",
     2,
     4,
     scale=1.0,
     shape="rectangle",
 )
 pgm.add_node(
-    "s_ij",
-    r"$s_{ij}$",
+    "s_star_ij",
+    r"$s^{\ast}_{ij}$",
     4,
     4,
     scale=1.0,
@@ -205,16 +211,16 @@ pgm.add_node(
 
 # observed data
 pgm.add_node(
-    "t_j",
-    r"$t_j$",
-    6.0,
-    3.25,
+    "t_star_j",
+    r"$t^{\ast}_j$",
+    5.5,
+    3.0,
     observed=True,
     shape="rectangle",
 )
 pgm.add_node(
     "u_obs_ij",
-    r"$\hat{u}_{ij}$",
+    r"$u_{ij}$",
     2,
     2.5,
     scale=1.0,
@@ -222,7 +228,7 @@ pgm.add_node(
 )
 pgm.add_node(
     "s_obs_ij",
-    r"$\hat{s}_{ij}$",
+    r"$s_{ij}$",
     4,
     2.5,
     scale=1.0,
@@ -231,39 +237,41 @@ pgm.add_node(
 
 # edges
 edge_params = {"head_length": 0.3, "head_width": 0.25, "lw": 0.7}
-pgm.add_edge("mu_init", "u_0i", plot_params=edge_params)
-pgm.add_edge("sigma_init", "u_0i", plot_params=edge_params)
-pgm.add_edge("mu_init", "s_0i", plot_params=edge_params)
-pgm.add_edge("sigma_init", "s_0i", plot_params=edge_params)
-pgm.add_edge("mu_theta", "theta_i", plot_params=edge_params)
-pgm.add_edge("sigma_theta", "theta_i", plot_params=edge_params)
-pgm.add_edge("mu_sigma", "sigma_ui", plot_params=edge_params)
-pgm.add_edge("sigma_sigma", "sigma_ui", plot_params=edge_params)
-pgm.add_edge("mu_sigma", "sigma_si", plot_params=edge_params)
-pgm.add_edge("sigma_sigma", "sigma_si", plot_params=edge_params)
+pgm.add_edge("mu_init", "u_star_0i", plot_params=edge_params)
+pgm.add_edge("sigma_init", "u_star_0i", plot_params=edge_params)
+pgm.add_edge("mu_init", "s_star_0i", plot_params=edge_params)
+pgm.add_edge("sigma_init", "s_star_0i", plot_params=edge_params)
+pgm.add_edge("mu_gamma", "gamma_star_i", plot_params=edge_params)
+pgm.add_edge("sigma_gamma", "gamma_star_i", plot_params=edge_params)
+pgm.add_edge("mu_U0", "U_0i", plot_params=edge_params)
+pgm.add_edge("sigma_U0", "U_0i", plot_params=edge_params)
+pgm.add_edge("mu_lambda", "lambda_j", plot_params=edge_params)
+pgm.add_edge("sigma_lambda", "lambda_j", plot_params=edge_params)
 
-pgm.add_edge("u_0i", "u_ij", plot_params=edge_params)
-pgm.add_edge("s_0i", "s_ij", plot_params=edge_params)
-pgm.add_edge("u_0i", "s_ij", plot_params=edge_params)
-pgm.add_edge("theta_i", "s_ij", plot_params=edge_params)
+pgm.add_edge("u_star_0i", "u_star_ij", plot_params=edge_params)
+pgm.add_edge("s_star_0i", "s_star_ij", plot_params=edge_params)
+pgm.add_edge("u_star_0i", "s_star_ij", plot_params=edge_params)
+pgm.add_edge("gamma_star_i", "s_star_ij", plot_params=edge_params)
 
-pgm.add_edge("u_ij", "u_obs_ij", plot_params=edge_params)
-pgm.add_edge("s_ij", "s_obs_ij", plot_params=edge_params)
-pgm.add_edge("sigma_ui", "u_obs_ij", plot_params=edge_params)
-pgm.add_edge("sigma_si", "s_obs_ij", plot_params=edge_params)
+pgm.add_edge("u_star_ij", "u_obs_ij", plot_params=edge_params)
+pgm.add_edge("s_star_ij", "s_obs_ij", plot_params=edge_params)
+pgm.add_edge("U_0i", "u_obs_ij", plot_params=edge_params)
+pgm.add_edge("U_0i", "s_obs_ij", plot_params=edge_params)
+pgm.add_edge("lambda_j", "u_obs_ij", plot_params=edge_params)
+pgm.add_edge("lambda_j", "s_obs_ij", plot_params=edge_params)
 
-pgm.add_edge("t_j", "u_ij", plot_params=edge_params)
-pgm.add_edge("t_j", "s_ij", plot_params=edge_params)
+pgm.add_edge("t_star_j", "u_star_ij", plot_params=edge_params)
+pgm.add_edge("t_star_j", "s_star_ij", plot_params=edge_params)
 
 # plates
 pgm.add_plate(
-    [0.5, 1.2, 5, 4.4],
+    [0.5, 1.4, 4.5, 4.2],
     label=r"$i \in \{1, \ldots, G\}$",
     shift=-0.1,
     fontsize=12,
 )
 pgm.add_plate(
-    [1.0, 1.8, 5.5, 2.75],
+    [1.0, 1.9, 5.0, 2.6],
     label=r"$j \in \{1, \ldots, N\}$",
     shift=-0.1,
     fontsize=12,
@@ -274,41 +282,159 @@ pgm.render()
 
 ### Mathematical Description
 
-The model is defined by the following hierarchical structure:
+The model is defined by the following hierarchical structure using the **direct dimensionless approach**:
 
-**Priors for dimensional parameters:**
+**Priors for dimensionless initial conditions:**
 \begin{align}
-    \alpha_i &\sim \text{LogNormal}(\mu_{\alpha}, \sigma_{\alpha}^2) \label{eq-alpha-prior-dim}, \\
-    \beta_i &\sim \text{LogNormal}(\mu_{\beta}, \sigma_{\beta}^2) \label{eq-beta-prior-dim}, \\
-    \gamma_i &\sim \text{LogNormal}(\mu_{\gamma}, \sigma_{\gamma}^2) \label{eq-gamma-prior-dim}
+    u^*_{0i}, s^*_{0i} &\sim \text{LogNormal}(\mu_{0}, \sigma_{0}^2) \label{eq-dimless-init-conds-priors}
 \end{align}
 
-**Initial conditions (steady state):**
+**Priors for dimensionless kinetic parameters:**
 \begin{align}
-    u_{0i} &= \frac{\alpha_i}{\beta_i} \label{eq-u0-steady}, \\
-    s_{0i} &= \frac{\alpha_i}{\gamma_i} \label{eq-s0-steady}
+    \gamma^*_i &\sim \text{LogNormal}(\mu_{\gamma^*}, \sigma_{\gamma^*}^2) \label{eq-gamma-star-prior}
 \end{align}
 
-**Deterministic dynamics (analytical solution):**
+where $\gamma^*_i = \gamma_i / \beta_i$ is the relative degradation rate for gene $i$.
+
+**Priors for characteristic scales:**
 \begin{align}
-    u^t_{ij} &= u_{0i} + (\alpha_i/\beta_i - u_{0i}) e^{-\beta_i (t_j - t_{0i})} \label{eq-ut-analytical}, \\
-    s^t_{ij} &= s_{0i} + \frac{\alpha_i}{\gamma_i}(1 - e^{-\gamma_i (t_j - t_{0i})}) + \frac{\alpha_i - \beta_i u_{0i}}{\gamma_i - \beta_i}(e^{-\gamma_i (t_j - t_{0i})} - e^{-\beta_i (t_j - t_{0i})}) \label{eq-st-analytical}
+    U_{0i} &\sim \text{LogNormal}(\mu_{U_0}, \sigma_{U_0}^2) \label{eq-U0-prior}
 \end{align}
 
-**Poisson observation model:**
+where $U_{0i} = \alpha_i / \beta_i$ is the characteristic concentration scale for gene $i$.
+
+**Priors for effective capture efficiency:**
 \begin{align}
-    u_{ij} &\sim \text{Poisson}(u^t_{ij}) \label{eq-u-obs-poisson}, \\
-    s_{ij} &\sim \text{Poisson}(s^t_{ij}) \label{eq-s-obs-poisson}
+    \lambda_j &\sim \text{LogNormal}(\mu_{\lambda}, \sigma_{\lambda}^2) \label{eq-lambda-prior}
+\end{align}
+
+where $\lambda_j$ represents the **lumped effective capture efficiency** for cell $j$.
+
+**Dimensionless differential equations:**
+The system is governed by the dimensionless equations:
+\begin{align}
+    \frac{du^*}{dt^*} &= 1 - u^* \label{eq-dimless-u-ode}, \\
+    \frac{ds^*}{dt^*} &= u^* - \gamma^* s^* \label{eq-dimless-s-ode}
+\end{align}
+
+where $t^* = \beta t$, $u^* = u/U_0$, $s^* = s/U_0$, and $\gamma^* = \gamma/\beta$.
+
+**Dimensionless analytical solutions:**
+Given dimensionless initial conditions $u^*_{0i}, s^*_{0i}$ at time $t^*_0 = 0$, the solutions are:
+\begin{align}
+    u^*_{ij} &= 1 + (u^*_{0i} - 1) e^{-t^*_j} \label{eq-dimless-u-solution}, \\
+    s^*_{ij} &= \frac{1}{\gamma^*_i} + \left(s^*_{0i} - \frac{u^*_{0i} - 1}{\gamma^*_i - 1} - \frac{1}{\gamma^*_i}\right) e^{-\gamma^*_i t^*_j} + \frac{u^*_{0i} - 1}{\gamma^*_i - 1} e^{-t^*_j} \label{eq-dimless-s-solution}
+\end{align}
+
+**Poisson observation model with characteristic scaling:**
+\begin{align}
+    u_{ij} &\sim \text{Poisson}(\lambda_j \cdot U_{0i} \cdot u^*_{ij}) \label{eq-dimless-u-obs-poisson}, \\
+    s_{ij} &\sim \text{Poisson}(\lambda_j \cdot U_{0i} \cdot s^*_{ij}) \label{eq-dimless-s-obs-poisson}
 \end{align}
 
 where:
 
 - $i \in \{1, \ldots, G\}$ indexes genes
 - $j \in \{1, \ldots, N\}$ indexes cells
-- $t_j$ are observed time coordinates for each cell
-- $t_{0i}$ are gene-specific initial times (can be set to 0 for simplicity)
+- $t^*_j$ are observed dimensionless time coordinates for each cell
+- $u^*_{0i}, s^*_{0i}$ are dimensionless initial conditions for each gene
+- $u^*_{ij}, s^*_{ij}$ are the latent dimensionless RNA concentrations
+- $U_{0i}$ is the characteristic concentration scale for gene $i$
+- $\lambda_j$ is the lumped effective capture efficiency for cell $j$
 
-This model respects the identifiability constraints identified in the dimensionless analysis while working directly with count data as in the PyroVelocity legacy implementation. The Poisson observation model follows the approach of Jahnke (2007), ensuring that if the initial distribution is a product of Poisson distributions, the transient distributions remain products of Poisson distributions centered at the deterministic solution.
+### Complete Parameter Interpretability
+
+The direct dimensionless approach provides **natural identifiability** and **clear biological interpretation** for all inferred parameters:
+
+#### **Core Dimensionless Parameters (Gene-Specific)**
+
+**$\gamma^*_i$ (Relative degradation rate)**
+
+- **Definition**: $\gamma^*_i = \gamma_i / \beta_i$
+- **Interpretation**: How fast mRNA degrades relative to how fast pre-mRNA gets spliced
+- **Biological meaning**:
+  - $\gamma^*_i < 1$: mRNA is more stable than pre-mRNA processing time
+  - $\gamma^*_i = 1$: mRNA degradation matches splicing timescale
+  - $\gamma^*_i > 1$: mRNA degrades faster than splicing occurs
+- **Example**: $\gamma^*_i = 0.5$ means mRNA half-life is twice as long as the characteristic splicing time
+
+#### **Characteristic Scales (Gene-Specific)**
+
+**$U_{0i}$ (Characteristic concentration scale)**
+
+- **Definition**: $U_{0i} = \alpha_i / \beta_i$
+- **Units**: molecules/cell
+- **Interpretation**: The steady-state pre-mRNA level that would be reached if there were no degradation
+- **Biological meaning**: Represents the gene's "expression capacity" - how many molecules it can produce per splicing timescale
+- **Example**: $U_{0i} = 100$ molecules/cell means this gene's transcription-splicing balance produces ~100 molecules per characteristic time
+
+#### **Effective Capture Efficiency (Cell-Specific)**
+
+**$\lambda_j$ (Lumped effective capture efficiency)**
+
+- **Definition**: Cell-specific composite technical efficiency
+- **Units**: Dimensionless (positive real number)
+- **Interpretation**: Overall efficiency of detecting RNA molecules in cell $j$
+- **Technical factors lumped together**:
+  1. **True capture efficiency**: Fraction of molecules actually captured during library prep
+  2. **Library size effects**: Total sequencing depth for this cell
+  3. **Batch effects**: Systematic differences between experimental batches
+  4. **Cell quality**: Cell viability, membrane integrity, RNA degradation
+  5. **Ambient RNA**: Background contamination (modeled as scaling factor)
+  6. **Technical dropout**: Stochastic detection failures
+- **Example**: $\lambda_j = 0.5$ indicates this cell has 50% of the expected detection efficiency compared to a "reference" cell
+
+#### **Derived Biological Quantities**
+
+From the inferred parameters, you can reconstruct the original dimensional parameters:
+
+**$\alpha_i$ (Transcription rate)**
+
+- **Formula**: $\alpha_i = U_{0i} / T_{0i}$ (where $T_{0i} = 1/\beta_i$ is inferred from time scale)
+- **Units**: molecules/(cell·hour)
+- **Interpretation**: How many pre-mRNA molecules are transcribed per hour
+
+**$\beta_i$ (Splicing rate)**
+
+- **Formula**: $\beta_i = 1 / T_{0i}$ (from dimensionless time scale)
+- **Units**: hour⁻¹
+- **Interpretation**: Splicing rate constant
+
+**$\gamma_i$ (Degradation rate)**
+
+- **Formula**: $\gamma_i = \gamma^*_i \cdot \beta_i$
+- **Units**: hour⁻¹
+- **Interpretation**: mRNA degradation rate constant
+
+### Justification for Parameterization
+
+This parameterization is designed to optimally account for identifiability and known biological/technical considerations:
+
+#### **1. Natural Identifiability**
+
+- **Dimensionless approach**: Eliminates scaling symmetries inherent in dimensional models
+- **No post-estimation rescaling**: Parameters are naturally identifiable during inference
+- **Hierarchical priors**: Provide regularization without breaking identifiability
+
+#### **2. Biological Interpretability**
+
+- **$\gamma^*_i$**: Directly interpretable relative degradation rate
+- **$U_{0i}$**: Gene expression capacity with clear biological meaning
+- **Dimensionless solutions**: Universal dynamics independent of absolute scales
+
+#### **3. Technical Factor Management**
+
+- **Strategic lumping**: $\lambda_j$ captures multiple technical effects without overparameterization
+- **Computational efficiency**: Fewer parameters than separate modeling of each technical factor
+- **Robustness**: Works across different experimental protocols and platforms
+
+#### **4. Connection to Established Theory**
+
+- **Dimensional analysis**: Follows Buckingham π theorem for parameter reduction
+- **RNA velocity theory**: Maintains connection to established dynamical systems approach
+- **Single-cell best practices**: Accounts for known technical factors in scRNA-seq data
+
+This approach provides the optimal balance of **biological interpretability**, **statistical identifiability**, and **practical implementation** for parameter recovery validation.
 
 ### Parameter Recovery Validation
 
@@ -344,10 +470,14 @@ print(f"Quick validation success rate: {quick_results['summary']['overall_succes
 print(f"Available validation components: {model.list_validation_components()}")
 ```
 
-## Validation Study 2: Anayltical dynamics with unobserved time
+## Validation Study 2: Dimensionless analytical dynamics with latent time
 
+*To be implemented: Same dimensionless approach but with latent time coordinates that must be inferred along with other parameters.*
 
-## Validation Study 3: Simulated dynamics with observed time
+## Validation Study 3: Dimensionless simulated dynamics with observed time
 
+*To be implemented: Replace analytical solutions with numerical integration using torchode while maintaining the dimensionless parameterization.*
 
-## Validation Study 4: Simulated dynamics with unobserved time
+## Validation Study 4: Dimensionless simulated dynamics with latent time
+
+*To be implemented: Full complexity model with numerical integration and latent time coordinates, representing the complete PyroVelocity modular implementation.*
