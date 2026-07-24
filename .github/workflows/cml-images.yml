@@ -40,7 +40,7 @@ jobs:
           echo "        BASE_REF:" "$GITHUB_BASE_REF"
           echo "             SHA:" "$GITHUB_SHA"
       - name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # ratchet:docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -91,7 +91,7 @@ jobs:
           echo "        BASE_REF:" "$GITHUB_BASE_REF"
           echo "             SHA:" "$GITHUB_SHA"
       - name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # ratchet:docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
