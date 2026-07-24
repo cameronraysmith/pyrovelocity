@@ -138,7 +138,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
 
@@ -189,7 +189,7 @@ jobs:
           echo "DEBUG=${{ needs.set-variables.outputs.debug }}"
           echo "MODE=${{ needs.set-variables.outputs.mode }}"
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
       - name: Setup environment
@@ -239,7 +239,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
       - name: setup gcp credentials
@@ -303,7 +303,7 @@ jobs:
           remove-android: "true"
           remove-codeql: "true"
           remove-docker-images: "true"
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
       - uses: DeterminateSystems/nix-installer-action@7993355175c2765e5733dae74f3e0786fe0e5c4f # ratchet:DeterminateSystems/nix-installer-action@v12
@@ -390,7 +390,7 @@ jobs:
       WORKFLOW_IMAGE: ${{ vars.WORKFLOW_IMAGE }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
       - name: Setup environment
@@ -443,7 +443,7 @@ jobs:
       git-head: ${{ steps.semanticrelease.outputs.git-head }}
       git-tag: ${{ steps.semanticrelease.outputs.git-tag }}
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
       - uses: DeterminateSystems/nix-installer-action@7993355175c2765e5733dae74f3e0786fe0e5c4f # ratchet:DeterminateSystems/nix-installer-action@v12
@@ -481,7 +481,7 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.release.outputs.git-tag }}
       - uses: DeterminateSystems/nix-installer-action@7993355175c2765e5733dae74f3e0786fe0e5c4f # ratchet:DeterminateSystems/nix-installer-action@v12
@@ -534,7 +534,7 @@ jobs:
       contents: read
       pages: read
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.set-variables.outputs.checkout_ref }}
       - name: Setup environment
@@ -558,7 +558,7 @@ jobs:
       pages: read
     environment: github-pages
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           ref: ${{ needs.release.outputs.git-tag }}
       - name: Setup environment
